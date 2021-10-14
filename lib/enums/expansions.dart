@@ -3,3 +3,9 @@ enum Expansions {
   tbc,
   wotlk,
 }
+
+extension ParseToString on Expansions {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+}

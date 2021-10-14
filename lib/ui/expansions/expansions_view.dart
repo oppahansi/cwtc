@@ -63,7 +63,7 @@ class ExpansionsView extends StatelessWidget {
                             model.setExpansion(Expansions.vanilla.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
-                          child: Image.asset(model.getVanillaIcon),
+                          child: Image.asset(model.getExpansionIcon(Expansions.vanilla.toShortString())),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             shadowColor: Colors.transparent,
@@ -80,7 +80,7 @@ class ExpansionsView extends StatelessWidget {
                             model.setExpansion(Expansions.tbc.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
-                          child: Image.asset(model.getTbcIcon),
+                          child: Image.asset(model.getExpansionIcon(Expansions.tbc.toShortString())),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             shadowColor: Colors.transparent,
@@ -97,7 +97,7 @@ class ExpansionsView extends StatelessWidget {
                             model.setExpansion(Expansions.wotlk.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
-                          child: Image.asset(model.getWotlkIcon),
+                          child: Image.asset(model.getExpansionIcon(Expansions.wotlk.toShortString())),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             shadowColor: Colors.transparent,

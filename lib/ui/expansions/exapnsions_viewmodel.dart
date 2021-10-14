@@ -16,11 +16,7 @@ class ExpansionsViewModel extends BaseViewModel {
 
   String get getWotlkIcon => _imageService.getWotlkIcon;
 
-  void set
-}
+  String getExpansionIcon(String expansion) => _imageService.getExpansionIcon(expansion);
 
-enum Expansions { 
-   vanilla, 
-   tbc, 
-   wotlk, 
+  void setExpansion(int expansion) => _tcService.setExpansion(expansion);
 }
