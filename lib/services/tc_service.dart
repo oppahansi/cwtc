@@ -59,9 +59,13 @@ class TCService {
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
-      for (var j = 0; j < _talentTreeState[_expansionId][_specId].length; j++) {
-        _talentTreeState[_expansionId][_charClassId][i][j] = 0;
-      }
+      resetSpecState(i);
+    }
+  }
+
+  void resetSpecState(int specId) {
+    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
+      _talentTreeState[_expansionId][_charClassId][_specId][i] = 0;
     }
   }
 }
