@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:classic_wow_talent_calculator_stacked/enums/expansions.dart';
-
 class ImageService {
   static final Random _random = Random();
   static const _backgroundImages = [
@@ -36,16 +34,6 @@ class ImageService {
     "assets/images/bgs/warrior1.png",
     "assets/images/bgs/warrior2.png",
   ];
-
-  static const String _vanillaIconFilePath = "assets/images/icons/vanilla_icon.png";
-  static const String _tbcIconFilePath = "assets/images/icons/tbc_icon.png";
-  static const String _wotlkIconFilePath = "assets/images/icons/wotlk_icon.png";
-
-  String get getVanillaIcon => _vanillaIconFilePath;
-
-  String get getTbcIcon => _tbcIconFilePath;
-
-  String get getWotlkIcon => _wotlkIconFilePath;
 
   String getExpansionIcon(String expansion) => "assets/images/icons/${expansion}_icon.png";
 

@@ -10,12 +10,6 @@ class ExpansionsViewModel extends BaseViewModel {
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 
-  String get getVanillaIcon => _imageService.getVanillaIcon;
-
-  String get getTbcIcon => _imageService.getTbcIcon;
-
-  String get getWotlkIcon => _imageService.getWotlkIcon;
-
   String getExpansionIcon(String expansion) => _imageService.getExpansionIcon(expansion);
 
   void setExpansion(int expansion) => _tcService.setExpansion(expansion);
