@@ -41,7 +41,7 @@ class DBService {
 
   Future<List<CharClass>> getCharClasses(String expansion) async {
     var db = await getDb(expansion);
-    List<Map> dbResult = await db!.query("classes");
+    var dbResult = await db!.query("classes");
     List<CharClass> charClasses = List.empty(growable: true);
 
     for (var rsultRow in dbResult) {

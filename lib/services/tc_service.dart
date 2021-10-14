@@ -1,9 +1,9 @@
 class TCService {
   static const List<String> _expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
-  static const List<String> _expansionsShort = ["vanilla", "tbc", "wotlk"];
+  static const List<String> _expansionsShort = ["Vanilla", "Tbc", "Wotlk"];
 
   int _expansion = 0;
-  int _classId = 0;
+  int _charClassId = 0;
 
   int get getExpansion => _expansion;
 
@@ -13,5 +13,5 @@ class TCService {
 
   void setExpansion(int expansion) => _expansion = expansion;
 
-  void setClass(int classId) => _classId = classId;
+  void setCharClass(int charClassId) => _charClassId = charClassId;
 }

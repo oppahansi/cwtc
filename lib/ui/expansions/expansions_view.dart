@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../enums/expansions.dart';
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
-import '../../services/tc_service.dart';
 import 'exapnsions_viewmodel.dart';
 
 class ExpansionsView extends StatelessWidget {
@@ -60,7 +60,7 @@ class ExpansionsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: TextButton(
                           onPressed: () {
-                            locator<TCService>().setExpansion(0);
+                            model.setExpansion(Expansions.vanilla.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
                           child: Image.asset(model.getVanillaIcon),
@@ -77,7 +77,7 @@ class ExpansionsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: TextButton(
                           onPressed: () {
-                            locator<TCService>().setExpansion(1);
+                            model.setExpansion(Expansions.tbc.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
                           child: Image.asset(model.getTbcIcon),
@@ -94,7 +94,7 @@ class ExpansionsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: TextButton(
                           onPressed: () {
-                            locator<TCService>().setExpansion(2);
+                            model.setExpansion(Expansions.wotlk.index);
                             locator<NavigationService>().navigateTo(Routes.charClassView);
                           },
                           child: Image.asset(model.getWotlkIcon),

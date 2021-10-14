@@ -18,13 +18,13 @@ class CharClassViewModel extends FutureViewModel<List<CharClass>> {
   String get getExpansionFull => _tcService.getExpansionFull;
 
   Future<List<CharClass>> getCharClasses() async {
-    return await _dbService.getCharClasses("vanilla");
+    return await _dbService.getCharClasses(_tcService.getExpansionShort.toLowerCase());
   }
 
   @override
   Future<List<CharClass>> futureToRun() => getCharClasses();
 
   void setClass(int classId) {
-    _tcService.setClass(classId);
+    _tcService.setCharClass(classId);
   }
 }
