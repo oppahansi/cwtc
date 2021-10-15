@@ -22,9 +22,9 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
 
   String get getBGImage => _tcService.getSpecBg;
 
-  int get getTreeLength => 0;
+  int get getTreeLength => _tcService.getTreeLength;
 
-  get getTalentIndex => null;
+  get getTalentIndex => 0;
 
   bool get showTalentOnIndex => true;
 

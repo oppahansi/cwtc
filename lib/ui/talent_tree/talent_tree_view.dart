@@ -30,12 +30,10 @@ class TalentTreeView extends StatelessWidget {
                     children: List.generate(model.getTreeLength, (index) {
                       Widget widget = const SizedBox.shrink();
 
-                      if (model.showTalentOnIndex) {
-                        var talent = model.getTalentForIndex(index);
-                        model.setTalentIndex(model.getTalentIndex + 1);
+                      var talent = model.getTalentForIndex(index);
+                      model.setTalentIndex(model.getTalentIndex + 1);
 
-                        widget = TalentView();
-                      }
+                      widget = Text(index < model.getTalents.length ? model.getTalents[index].name : "xxx");
 
                       return widget;
                     }),

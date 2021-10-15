@@ -69,7 +69,7 @@ class DBService {
 
   Future<List<Talent>> getTalents(String expansion, int charClassId, int specId) async {
     var db = await getDb(expansion);
-    var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId]);
+    var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId], orderBy: "rowid");
     List<Talent> talents = List.empty(growable: true);
 
     for (var rsultRow in dbResult) {
