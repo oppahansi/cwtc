@@ -1,3 +1,5 @@
+import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
+
 import '../constants/constants.dart';
 import '../data_models/char_class.dart';
 import '../data_models/spec.dart';
@@ -34,6 +36,7 @@ class TCService {
   CharClass? _charClass;
   List<Spec> _specs = List.empty(growable: true);
   List<Talent> _talents = List.empty(growable: true);
+  List<Rank> _ranks = List.empty(growable: true);
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
@@ -84,6 +87,18 @@ class TCService {
   void setTalents(List<Talent> talents) => _talents = talents;
 
   List<Talent> get getTalents => _talents;
+
+  void setRanks(List<Rank> ranks) {
+    _ranks = ranks;
+    assignRanksToTalents();
+  }
+
+  void assignRanksToTalents() {
+    for (Talent talent in _talents) {
+      List<Rank> ranks = _ranks.where((element) => element.talentId == talent.id).toList();
+      talent.ranks = ranks;
+    }
+  }
 
   Talent getTalentForIndex(int index) => _talents[index];
 

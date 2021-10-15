@@ -5,6 +5,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../data_models/char_class.dart';
+import '../data_models/rank.dart';
 import '../data_models/spec.dart';
 import '../data_models/talent.dart';
 
@@ -78,5 +79,18 @@ class DBService {
     }
 
     return talents;
+  }
+
+  Future<List<Rank>> getRanks(String expansion, List<int> talentIds) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("ranks", where: "talentId IN (${talentIds.join(', ')})");
+    List<Rank> ranks = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Rank rank = Rank.fromMap(rsultRow);
+      ranks.add(rank);
+    }
+
+    return ranks;
   }
 }
