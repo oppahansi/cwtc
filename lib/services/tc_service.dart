@@ -1,8 +1,7 @@
-import '../app/app.locator.dart';
+import '../constants/constants.dart';
 import '../data_models/char_class.dart';
 import '../data_models/spec.dart';
 import '../data_models/talent.dart';
-import '../services/db_service.dart';
 
 class TCService {
   static const List<String> _expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
@@ -26,8 +25,6 @@ class TCService {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
   ];
-
-  final _dbService = locator<DBService>();
 
   int _expansionId = 0;
   int _specId = 0;
@@ -66,7 +63,7 @@ class TCService {
 
   int get getCharClassId => _charClass!.id;
 
-  get getClassName => _charClass!.name;
+  String get getCharClassName => _charClass!.name;
 
   void setSpecId(int specId) => _specId = specId;
 
@@ -88,5 +85,7 @@ class TCService {
 
   List<Talent> get getTalents => _talents;
 
-  String get getSpecBg => "assets/images/bgs/${_charClass!.name.toLowerCase()}$_specId.png";
+  Talent getTalentForIndex(int index) => _talents[index];
+
+  bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClass!.id][_specId][index] == 1;
 }

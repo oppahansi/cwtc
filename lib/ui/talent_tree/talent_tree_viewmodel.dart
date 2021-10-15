@@ -16,26 +16,38 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
   static const String _specsFuture = 'specs';
   static const String _talentFuture = 'talents';
 
-  String get getClassName => _tcService.getClassName;
+  int _talentIndex = 0;
+
+  @override
+  void onData(String key) {
+    _tcService.setSpecs(dataMap![_specsFuture]);
+    _tcService.setTalents(dataMap![_talentFuture]);
+  }
+
+  String get getClassName => _tcService.getCharClassName;
 
   Color get getClassColor => _tcService.getClassColor.toColor();
 
-  String get getBGImage => _tcService.getSpecBg;
+  String get getBGImage => _imageService.getSpecBg(_tcService.getCharClassName.toLowerCase(), _tcService.getSpecId);
 
   int get getTreeLength => _tcService.getTreeLength;
 
-  get getTalentIndex => 0;
+  int get getTalentIndex => 0;
 
-  bool get showTalentOnIndex => true;
+  bool showTalentOnIndex(int index) => _tcService.showTalentOnIndex(index);
 
-  getTalentForIndex(int index) {}
-
-  void setTalentIndex(param0) {}
+  Talent get getCurrentTalent {
+    var currentTalent = _tcService.getTalentForIndex(_talentIndex);
+    _talentIndex++;
+    return currentTalent;
+  }
 
   bool get fetchingSpecs => busy(_specsFuture);
+
   bool get fetchingTalents => busy(_talentFuture);
 
   List<Spec> get getSpecs => dataMap![_specsFuture];
+
   List<Talent> get getTalents => dataMap![_talentFuture];
 
   @override
@@ -50,12 +62,6 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
 
   Future<List<Talent>> getTalentsFuture() async {
     return await _dbService.getTalents(_tcService.getExpansionShort.toLowerCase(), _tcService.getCharClassId, _tcService.getSpecId);
-  }
-
-  @override
-  void onData(String key) {
-    _tcService.setSpecs(dataMap![_specsFuture]);
-    _tcService.setTalents(dataMap![_talentFuture]);
   }
 }
 

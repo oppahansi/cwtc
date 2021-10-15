@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
+
 class ImageService {
   static final Random _random = Random();
   static const _backgroundImages = [
@@ -40,4 +42,8 @@ class ImageService {
   String get getRngBgImageFilePath {
     return _backgroundImages[_random.nextInt(_backgroundImages.length)];
   }
+
+  String getSpecBg(String charClass, int specId) => "assets/images/bgs/$charClass$specId.png";
+
+  String getTalentIcon(String icon) => "assets/images/icons/$icon.png";
 }
