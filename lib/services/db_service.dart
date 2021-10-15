@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../data_models/char_class.dart';
+import '../data_models/spec.dart';
+import '../data_models/talent.dart';
 
 class DBService {
   static final Map<String, Database> _dbs = {};

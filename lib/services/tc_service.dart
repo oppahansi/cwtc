@@ -1,9 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/char_class.dart';
-
-import '../../app/app.locator.dart';
-import '../../data_models/spec.dart';
-import '../../data_models/talent.dart';
-import '../../services/db_service.dart';
+import '../app/app.locator.dart';
+import '../data_models/char_class.dart';
+import '../data_models/spec.dart';
+import '../data_models/talent.dart';
+import '../services/db_service.dart';
 
 class TCService {
   static const List<String> _expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
