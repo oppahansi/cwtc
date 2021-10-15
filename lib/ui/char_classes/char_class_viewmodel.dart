@@ -13,7 +13,7 @@ class CharClassViewModel extends FutureViewModel<List<CharClass>> {
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 
-  int get getExpansion => _tcService.getExpansion;
+  int get getExpansion => _tcService.getExpansionId;
 
   String get getExpansionFull => _tcService.getExpansionFull;
 
@@ -24,7 +24,7 @@ class CharClassViewModel extends FutureViewModel<List<CharClass>> {
   @override
   Future<List<CharClass>> futureToRun() => getCharClasses();
 
-  void setClass(int classId) {
-    _tcService.setCharClass(classId);
+  void setCharClass(CharClass charClass) {
+    _tcService.setCharClass(charClass);
   }
 }

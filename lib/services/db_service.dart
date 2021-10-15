@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
+import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -50,5 +52,31 @@ class DBService {
     }
 
     return charClasses;
+  }
+
+  Future<List<Spec>> getSpecs(String expansion, int charClassId) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("specs", where: "classId = ?", whereArgs: [charClassId]);
+    List<Spec> specs = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Spec charClass = Spec.fromMap(rsultRow);
+      specs.add(charClass);
+    }
+
+    return specs;
+  }
+
+  Future<List<Talent>> getTalents(String expansion, int charClassId, int specId) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId]);
+    List<Talent> talents = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Talent talent = Talent.fromMap(rsultRow);
+      talents.add(talent);
+    }
+
+    return talents;
   }
 }

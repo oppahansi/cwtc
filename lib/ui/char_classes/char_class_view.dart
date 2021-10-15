@@ -35,7 +35,7 @@ class CharClassView extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: TextButton(
                             onPressed: () {
-                              model.setClass(model.data![index].id);
+                              model.setCharClass(model.data![index]);
                               locator<NavigationService>().navigateTo(Routes.talentTreeView);
                             },
                             child: Image.asset("assets/images/icons/${model.data![index].icon}.png"),

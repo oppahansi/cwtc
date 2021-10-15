@@ -23,21 +23,23 @@ class TalentTreeView extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            child: GridView.count(
-              crossAxisCount: 4,
-              children: List.generate(model.getTreeLength, (index) {
-                Widget widget = SizedBox.shrink();
+            child: model.fetchingSpecs || model.fetchingTalents
+                ? const CircularProgressIndicator()
+                : GridView.count(
+                    crossAxisCount: 4,
+                    children: List.generate(model.getTreeLength, (index) {
+                      Widget widget = const SizedBox.shrink();
 
-                if (model.showTalentOnIndex) {
-                  var talent = model.getTalentForIndex(index);
-                  model.setTalentIndex(model.getTalentIndex + 1);
+                      if (model.showTalentOnIndex) {
+                        var talent = model.getTalentForIndex(index);
+                        model.setTalentIndex(model.getTalentIndex + 1);
 
-                  widget = TalentView();
-                }
+                        widget = TalentView();
+                      }
 
-                return widget;
-              }),
-            ),
+                      return widget;
+                    }),
+                  ),
           ),
         ),
       ),

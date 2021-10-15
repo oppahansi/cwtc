@@ -12,5 +12,5 @@ class ExpansionsViewModel extends BaseViewModel {
 
   String getExpansionIcon(String expansion) => _imageService.getExpansionIcon(expansion);
 
-  void setExpansion(int expansion) => _tcService.setExpansion(expansion);
+  void setExpansion(int expansion) => _tcService.setExpansionId(expansion);
 }

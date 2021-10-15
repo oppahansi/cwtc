@@ -13,4 +13,14 @@ class Spec {
     required this.name,
     required this.icon,
   });
+
+  static final columns = ["classId", "id", "name", "icon"];
+  factory Spec.fromMap(Map<dynamic, dynamic> data) {
+    return Spec(
+      classId: data["classId"],
+      id: data["id"],
+      name: data["name"],
+      icon: data["icon"],
+    );
+  }
 }

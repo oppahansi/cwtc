@@ -1,3 +1,6 @@
+import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
+import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
+import 'package:classic_wow_talent_calculator_stacked/services/db_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -5,15 +8,19 @@ import '../../app/app.locator.dart';
 import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
 
-class TalentTreeViewModel extends BaseViewModel {
+class TalentTreeViewModel extends MultipleFutureViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
+  final _dbService = locator<DBService>();
 
-  String get getClassName => "Class";
+  static const String _specsFuture = 'specs';
+  static const String _talentFuture = 'talents';
 
-  get getClassColor => null;
+  String get getClassName => _tcService.getClassName;
 
-  String get getBGImage => "";
+  Color get getClassColor => _tcService.getClassColor.toColor();
+
+  String get getBGImage => _tcService.getSpecBg;
 
   int get getTreeLength => 0;
 
@@ -24,6 +31,32 @@ class TalentTreeViewModel extends BaseViewModel {
   getTalentForIndex(int index) {}
 
   void setTalentIndex(param0) {}
+
+  bool get fetchingSpecs => busy(_specsFuture);
+  bool get fetchingTalents => busy(_talentFuture);
+
+  List<Spec> get getSpecs => dataMap![_specsFuture];
+  List<Talent> get getTalents => dataMap![_talentFuture];
+
+  @override
+  Map<String, Future Function()> get futuresMap => {
+        _specsFuture: getSpecsFuture,
+        _talentFuture: getTalentsFuture,
+      };
+
+  Future<List<Spec>> getSpecsFuture() async {
+    return await _dbService.getSpecs(_tcService.getExpansionShort.toLowerCase(), _tcService.getCharClassId);
+  }
+
+  Future<List<Talent>> getTalentsFuture() async {
+    return await _dbService.getTalents(_tcService.getExpansionShort.toLowerCase(), _tcService.getCharClassId, _tcService.getSpecId);
+  }
+
+  @override
+  void onData(String key) {
+    _tcService.setSpecs(dataMap![_specsFuture]);
+    _tcService.setTalents(dataMap![_talentFuture]);
+  }
 }
 
 extension ColorExtension on String {

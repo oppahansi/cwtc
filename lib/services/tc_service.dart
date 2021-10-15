@@ -1,3 +1,10 @@
+import 'package:classic_wow_talent_calculator_stacked/data_models/char_class.dart';
+
+import '../../app/app.locator.dart';
+import '../../data_models/spec.dart';
+import '../../data_models/talent.dart';
+import '../../services/db_service.dart';
+
 class TCService {
   static const List<String> _expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
   static const List<String> _expansionsShort = ["Vanilla", "Tbc", "Wotlk"];
@@ -27,23 +34,44 @@ class TCService {
     ],
   ];
 
+  final _dbService = locator<DBService>();
+
   int _expansionId = 0;
-  int _charClassId = 0;
   int _specId = 0;
   int _pointsLeft = 0;
   int _requiredLevel = 10;
 
-  int get getExpansion => _expansionId;
+  CharClass? _charClass;
+  List<Spec> _specs = List.empty(growable: true);
+  List<Talent> _talents = List.empty(growable: true);
+
+  String get getClassColor => _charClass!.color;
+
+  void resetTalentTreeState() {
+    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
+      resetSpecState(i);
+    }
+  }
+
+  void resetSpecState(int specId) {
+    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
+      _talentTreeState[_expansionId][_charClass!.id][_specId][i] = 0;
+    }
+  }
+
+  void setExpansionId(int expansionId) => _expansionId = expansionId;
+
+  int get getExpansionId => _expansionId;
 
   String get getExpansionFull => _expansionsFull[_expansionId];
 
   String get getExpansionShort => _expansionsShort[_expansionId];
 
-  void setExpansion(int expansionId) => _expansionId = expansionId;
+  void setCharClass(CharClass charClass) => _charClass = charClass;
 
-  void setCharClass(int charClassId) => _charClassId = charClassId;
+  int get getCharClassId => _charClass!.id;
 
-  int get charClassId => _charClassId;
+  get getClassName => _charClass!.name;
 
   void setSpecId(int specId) => _specId = specId;
 
@@ -57,15 +85,13 @@ class TCService {
 
   int get getRequiredLevel => _requiredLevel;
 
-  void resetTalentTreeState() {
-    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
-      resetSpecState(i);
-    }
-  }
+  void setSpecs(List<Spec> specs) => _specs = specs;
 
-  void resetSpecState(int specId) {
-    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
-      _talentTreeState[_expansionId][_charClassId][_specId][i] = 0;
-    }
-  }
+  Spec get getSpec => _specs[_specId];
+
+  void setTalents(List<Talent> talents) => _talents = talents;
+
+  List<Talent> get getTalents => _talents;
+
+  String get getSpecBg => "assets/images/bgs/${_charClass!.name.toLowerCase()}$_specId.png";
 }

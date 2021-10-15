@@ -21,4 +21,18 @@ class Talent {
     required this.icon,
     required this.requires,
   });
+
+  static final columns = ["classId", "specId", "id", "row", "column", "name", "icon", "requires"];
+  factory Talent.fromMap(Map<dynamic, dynamic> data) {
+    return Talent(
+      classId: data["classId"],
+      specId: data["specId"],
+      id: data["id"],
+      row: data["row"],
+      column: data["column"],
+      name: data["name"],
+      icon: data["icon"],
+      requires: data["requires"],
+    );
+  }
 }
