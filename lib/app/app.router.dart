@@ -12,13 +12,16 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/char_classes/char_class_view.dart';
 import '../ui/expansions/expansions_view.dart';
+import '../ui/talent_tree/talent_tree_view.dart';
 
 class Routes {
   static const String expansionsView = '/';
   static const String charClassView = '/char-class-view';
+  static const String talentTreeView = '/talent-tree-view';
   static const all = <String>{
     expansionsView,
     charClassView,
+    talentTreeView,
   };
 }
 
@@ -28,6 +31,7 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.expansionsView, page: ExpansionsView),
     RouteDef(Routes.charClassView, page: CharClassView),
+    RouteDef(Routes.talentTreeView, page: TalentTreeView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -41,6 +45,12 @@ class StackedRouter extends RouterBase {
     CharClassView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const CharClassView(),
+        settings: data,
+      );
+    },
+    TalentTreeView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const TalentTreeView(),
         settings: data,
       );
     },
