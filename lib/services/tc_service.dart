@@ -1,5 +1,4 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
-
+import '../data_models/rank.dart';
 import '../constants/constants.dart';
 import '../data_models/char_class.dart';
 import '../data_models/spec.dart';

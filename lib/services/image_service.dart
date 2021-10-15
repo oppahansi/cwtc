@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
-
 class ImageService {
   static final Random _random = Random();
   static const _backgroundImages = [

@@ -1,10 +1,11 @@
-import 'package:classic_wow_talent_calculator_stacked/app/app.locator.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
+import 'package:stacked/stacked.dart';
+
+import '../../../app/app.locator.dart';
+import '../../../data_models/rank.dart';
+import '../../../data_models/talent.dart';
 import '../../../services/db_service.dart';
 import '../../../services/image_service.dart';
 import '../../../services/tc_service.dart';
-import 'package:stacked/stacked.dart';
 
 class TalentViewModel extends FutureViewModel {
   final _imageService = locator<ImageService>();

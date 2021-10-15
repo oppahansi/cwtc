@@ -1,7 +1,7 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../data_models/talent.dart';
 import 'talent_viewmodel.dart';
 
 class TalentView extends StatelessWidget {

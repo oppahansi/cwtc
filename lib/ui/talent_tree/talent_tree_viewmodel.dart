@@ -1,4 +1,3 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,7 +15,6 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
 
   static const String _specsFuture = 'specs';
   static const String _talentFuture = 'talents';
-  //static const String _ranksFuture = "ranks";
 
   int _talentIndex = 0;
 
@@ -29,9 +27,6 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
       case _talentFuture:
         _tcService.setTalents(dataMap![_talentFuture]);
         break;
-      // case _ranksFuture:
-      //   _tcService.setRanks(dataMap![_ranksFuture]);
-      //   break;
       default:
     }
   }
@@ -58,19 +53,14 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
 
   bool get fetchingTalents => busy(_talentFuture);
 
-  //bool get fetchingRanks => busy(_ranksFuture);
-
   List<Spec> get getSpecs => dataMap![_specsFuture];
 
   List<Talent> get getTalents => dataMap![_talentFuture];
-
-  //List<Rank> get getRanks => dataMap![_ranksFuture];
 
   @override
   Map<String, Future Function()> get futuresMap => {
         _specsFuture: getSpecsFuture,
         _talentFuture: getTalentsFuture,
-        //  _ranksFuture: getRanksFuture,
       };
 
   Future<List<Spec>> getSpecsFuture() async {
@@ -80,15 +70,6 @@ class TalentTreeViewModel extends MultipleFutureViewModel {
   Future<List<Talent>> getTalentsFuture() async {
     return await _dbService.getTalents(_tcService.getExpansionShort.toLowerCase(), _tcService.getCharClassId, _tcService.getSpecId);
   }
-
-  // Future<List<Rank>> getRanksFuture() async {
-  //   List<int> talentIds = List.empty(growable: true);
-  //   for (Talent talent in getTalents) {
-  //     talentIds.add(talent.id);
-  //   }
-
-  //   return await _dbService.getRanks(_tcService.getExpansionShort.toLowerCase(), talentIds);
-  // }
 }
 
 extension ColorExtension on String {
