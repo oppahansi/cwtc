@@ -9,6 +9,11 @@ class TCService {
   static const List<String> _expansionsShort = ["Vanilla", "Tbc", "Wotlk"];
   static const List<int> _availablePoints = [51, 61, 71];
 
+  Map<int, List<CharClass>> _charClassesMap = {};
+  Map<int, List<Spec>> _specsMap = {};
+  Map<int, List<Talent>> _talentsMap = {};
+  Map<int, List<Rank>> _ranksMap = {};
+
   final List<List<List<int>>> _talentTreeState = [
     [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -61,6 +66,8 @@ class TCService {
 
   String get getExpansionShort => _expansionsShort[_expansionId];
 
+  List<String> get getExpansionsShort => _expansionsShort;
+
   void setCharClass(CharClass charClass) => _charClass = charClass;
 
   int get getCharClassId => _charClass!.id;
@@ -71,7 +78,7 @@ class TCService {
 
   int get getSpecId => _specId;
 
-  void setPointsLeft() => _pointsLeft = _availablePoints[_expansionId];
+  void decrementPointsLeft() => _pointsLeft = _availablePoints[_expansionId];
 
   int get getPointsLeft => _pointsLeft;
 
@@ -81,7 +88,7 @@ class TCService {
 
   void setSpecs(List<Spec> specs) => _specs = specs;
 
-  Spec get getSpec => _specs[_specId];
+  Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
   void setTalents(List<Talent> talents) => _talents = talents;
 
@@ -102,4 +109,12 @@ class TCService {
   Talent getTalentForIndex(int index) => _talents[index];
 
   bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClass!.id][_specId][index] == 1;
+
+  void setCharClassesMap(Map<int, List<CharClass>> charClassesMap) => _charClassesMap = charClassesMap;
+
+  void setSpecsMap(Map<int, List<Spec>> specsMap) => _specsMap = specsMap;
+
+  void setTalentsMap(Map<int, List<Talent>> talentsMap) => _talentsMap = talentsMap;
+
+  void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
 }

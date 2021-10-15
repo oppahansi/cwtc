@@ -34,6 +34,7 @@ class TalentViewModel extends FutureViewModel {
     if (_talentPoints >= talent.ranks.length) return;
 
     _talentPoints++;
+    _tcService.decrementPointsLeft();
     notifyListeners();
   }
 
