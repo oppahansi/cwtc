@@ -14,26 +14,30 @@ class TalentView extends StatelessWidget {
     return ViewModelBuilder<TalentViewModel>.reactive(
       builder: (context, model, child) => Stack(
         children: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(model.getIcon(talent.icon)),
-                //colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(
-                width: 3,
-                color: Colors.green.shade400,
+          TextButton(
+            onPressed: () {},
+            style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
+            child: Container(
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(model.getIcon(talent.icon)),
+                  //colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                border: Border.all(
+                  width: 3,
+                  color: Colors.green.shade400,
+                ),
               ),
             ),
           ),
           Positioned(
-            bottom: 5,
-            right: 5,
+            bottom: 10,
+            right: 10,
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
