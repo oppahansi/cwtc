@@ -6,7 +6,7 @@ import '../../services/db_service.dart';
 import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
 
-class CharClassViewModel extends FutureViewModel<List<CharClass>> {
+class CharClassViewModel extends BaseViewModel {
   final _dbService = locator<DBService>();
   final _tcService = locator<TCService>();
   final _imageService = locator<ImageService>();
@@ -17,14 +17,11 @@ class CharClassViewModel extends FutureViewModel<List<CharClass>> {
 
   String get getExpansionFull => _tcService.getExpansionFull;
 
+  int get getCharClassCount => _tcService.getCharClassCount;
+
+  String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
+
   Future<List<CharClass>> getCharClasses() async {
     return await _dbService.getCharClasses(_tcService.getExpansionShort.toLowerCase());
-  }
-
-  @override
-  Future<List<CharClass>> futureToRun() => getCharClasses();
-
-  void setCharClass(CharClass charClass) {
-    _tcService.setCharClass(charClass);
   }
 }

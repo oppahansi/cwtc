@@ -7,7 +7,7 @@ import '../../../services/db_service.dart';
 import '../../../services/image_service.dart';
 import '../../../services/tc_service.dart';
 
-class TalentViewModel extends FutureViewModel {
+class TalentViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
   final _dbService = locator<DBService>();
@@ -46,22 +46,4 @@ class TalentViewModel extends FutureViewModel {
   }
 
   int get getTalentPoints => _talentPoints;
-
-  @override
-  Future futureToRun() => getRanksFuture();
-
-  Future<List<Rank>> getRanksFuture() async {
-    List<int> talentIds = List.empty(growable: true);
-    for (Talent talent in _tcService.getTalents) {
-      talentIds.add(talent.id);
-    }
-
-    return await _dbService.getRanks(_tcService.getExpansionShort.toLowerCase(), talentIds);
-  }
-
-  @override
-  void onData(data) {
-    _tcService.setRanks(data);
-    super.onData(data);
-  }
 }

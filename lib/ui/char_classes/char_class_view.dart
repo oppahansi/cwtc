@@ -28,24 +28,21 @@ class CharClassView extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 3,
                 shrinkWrap: true,
-                children: model.isBusy
-                    ? [const CircularProgressIndicator()]
-                    : List.generate(model.data!.length, (index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: TextButton(
-                            onPressed: () {
-                              model.setCharClass(model.data![index]);
-                              locator<NavigationService>().navigateTo(Routes.talentTreeView);
-                            },
-                            child: Image.asset("assets/images/icons/${model.data![index].icon}.png"),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                            ),
-                          ),
-                        );
-                      }),
+                children: List.generate(model.getCharClassCount, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextButton(
+                      onPressed: () {
+                        locator<NavigationService>().navigateTo(Routes.talentTreeView);
+                      },
+                      child: Image.asset(model.getCharClassIconForId(index)),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                      ),
+                    ),
+                  );
+                }),
               ),
             ),
           ),

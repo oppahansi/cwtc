@@ -26,7 +26,6 @@ class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStat
     _colorAnim = bgColor.animate(_controller);
   }
 
-  @override
   Animatable<Color> bgColor = RainbowColorTween([
     Colors.orange,
     Colors.green,

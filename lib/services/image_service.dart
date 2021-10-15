@@ -46,4 +46,6 @@ class ImageService {
   String getSpecBg(String charClass, int specId) => "assets/images/bgs/$charClass$specId.png";
 
   String getTalentIcon(String icon) => "assets/images/icons/$icon.png";
+
+  String getCharClassIcon(String charClassIcon) => "assets/images/icons/$charClassIcon.png";
 }

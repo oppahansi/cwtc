@@ -33,14 +33,12 @@ class TCService {
   ];
 
   int _expansionId = 0;
+  int _charClassId = 0;
   int _specId = 0;
   int _pointsLeft = 0;
   int _requiredLevel = 10;
 
-  CharClass? _charClass;
-  List<Spec> _specs = List.empty(growable: true);
-  List<Talent> _talents = List.empty(growable: true);
-  List<Rank> _ranks = List.empty(growable: true);
+  get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
@@ -54,9 +52,9 @@ class TCService {
     }
   }
 
-  String get getClassColor => _charClass!.color;
+  String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
 
-  int get getTreeLength => _talentTreeState[_expansionId][_specId].length;
+  int get getTreeLength => _talentsMap[_expansionId]!.length;
 
   void setExpansionId(int expansionId) => _expansionId = expansionId;
 
@@ -68,11 +66,9 @@ class TCService {
 
   List<String> get getExpansionsShort => _expansionsShort;
 
-  void setCharClass(CharClass charClass) => _charClass = charClass;
+  int get getCharClassId => _charClassId;
 
-  int get getCharClassId => _charClass!.id;
-
-  String get getCharClassName => _charClass!.name;
+  String get getCharClassName => _charClassesMap[_expansionId]![_charClassId].name;
 
   void setSpecId(int specId) => _specId = specId;
 
@@ -80,35 +76,21 @@ class TCService {
 
   void decrementPointsLeft() => _pointsLeft = _availablePoints[_expansionId];
 
+  void incrementPointsLeft() => _pointsLeft++;
+
   int get getPointsLeft => _pointsLeft;
 
-  void setRequiredLevel(int requiredLevel) => _requiredLevel = requiredLevel;
+  void incrementRequiredLevel() => _requiredLevel++;
+
+  void decrementRequiredLevel() => _requiredLevel--;
 
   int get getRequiredLevel => _requiredLevel;
 
-  void setSpecs(List<Spec> specs) => _specs = specs;
-
   Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
-  void setTalents(List<Talent> talents) => _talents = talents;
+  Talent getTalentForIndex(int index) => _talentsMap[_expansionId]![index];
 
-  List<Talent> get getTalents => _talents;
-
-  void setRanks(List<Rank> ranks) {
-    _ranks = ranks;
-    assignRanksToTalents();
-  }
-
-  void assignRanksToTalents() {
-    for (Talent talent in _talents) {
-      List<Rank> ranks = _ranks.where((element) => element.talentId == talent.id).toList();
-      talent.ranks = ranks;
-    }
-  }
-
-  Talent getTalentForIndex(int index) => _talents[index];
-
-  bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClass!.id][_specId][index] == 1;
+  bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClassId][_specId][index] == 1;
 
   void setCharClassesMap(Map<int, List<CharClass>> charClassesMap) => _charClassesMap = charClassesMap;
 
@@ -117,4 +99,6 @@ class TCService {
   void setTalentsMap(Map<int, List<Talent>> talentsMap) => _talentsMap = talentsMap;
 
   void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
+
+  String getCharClassIcon(int charClassId) => _charClassesMap[_expansionId]![charClassId].icon;
 }
