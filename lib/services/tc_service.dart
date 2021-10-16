@@ -5,10 +5,6 @@ import '../data_models/spec.dart';
 import '../data_models/talent.dart';
 
 class TCService {
-  static const List<String> _expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
-  static const List<String> _expansionsShort = ["Vanilla", "Tbc", "Wotlk"];
-  static const List<int> _availablePoints = [51, 61, 71];
-
   Map<int, List<CharClass>> _charClassesMap = {};
   Map<int, List<Spec>> _specsMap = {};
   Map<int, List<Talent>> _talentsMap = {};
@@ -54,17 +50,17 @@ class TCService {
 
   String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
 
-  int get getTreeLength => _talentsMap[_expansionId]!.length;
+  int get getTreeLength => Constants.talentTeeLengths[_expansionId];
 
   void setExpansionId(int expansionId) => _expansionId = expansionId;
 
   int get getExpansionId => _expansionId;
 
-  String get getExpansionFull => _expansionsFull[_expansionId];
+  String get getExpansionFull => Constants.expansionsFull[_expansionId];
 
-  String get getExpansionShort => _expansionsShort[_expansionId];
+  String get getExpansionShort => Constants.expansionsShort[_expansionId];
 
-  List<String> get getExpansionsShort => _expansionsShort;
+  List<String> get getExpansionsShort => Constants.expansionsShort;
 
   int get getCharClassId => _charClassId;
 
@@ -74,7 +70,7 @@ class TCService {
 
   int get getSpecId => _specId;
 
-  void decrementPointsLeft() => _pointsLeft = _availablePoints[_expansionId];
+  void decrementPointsLeft() => _pointsLeft = Constants.availablePoints[_expansionId];
 
   void incrementPointsLeft() => _pointsLeft++;
 
@@ -88,7 +84,8 @@ class TCService {
 
   Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
-  Talent getTalentForIndex(int index) => _talentsMap[_expansionId]![index];
+  Talent getTalentForIndex(int index) =>
+      _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[index];
 
   bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClassId][_specId][index] == 1;
 
@@ -101,4 +98,6 @@ class TCService {
   void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
 
   String getCharClassIcon(int charClassId) => _charClassesMap[_expansionId]![charClassId].icon;
+
+  void setCharClassId(int charClassId) => _charClassId = charClassId;
 }
