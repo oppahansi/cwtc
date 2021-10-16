@@ -10,7 +10,7 @@ class CharClassViewModel extends BaseViewModel {
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 
-  int get getExpansion => _tcService.getExpansionId;
+  int get getExpansionId => _tcService.getExpansionId;
 
   String get getExpansionFull => _tcService.getExpansionFull;
 

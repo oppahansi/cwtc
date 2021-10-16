@@ -1,3 +1,4 @@
+import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,6 +13,7 @@ class ExpansionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ViewModelBuilder<ExpansionsViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
@@ -25,13 +27,13 @@ class ExpansionsView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "Classic WoW\nTalent Calculator",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: SizeConfig.safeBlockHorizontal! * 10,
                     fontFamily: "LifeCraft",
-                    shadows: [
+                    shadows: const [
                       Shadow(
                           // bottomLeft
                           offset: Offset(-1.5, -1.5),

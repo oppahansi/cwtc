@@ -37,6 +37,8 @@ class ImageService {
 
   String get getAppIcon => "assets/images/icons/app_icon.png";
 
+  String get getEmptyTalentIcon => "assets/images/icons/empty.png";
+
   String getExpansionIcon(String expansion) => "assets/images/icons/${expansion}_icon.png";
 
   String get getRngBgImageFilePath {

@@ -1,3 +1,5 @@
+import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
+import 'package:classic_wow_talent_calculator_stacked/ui/char_classes/char_class_button/char_class_button_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -11,6 +13,7 @@ class CharClassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ViewModelBuilder<CharClassViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
@@ -24,27 +27,40 @@ class CharClassView extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            child: Center(
-              child: GridView.count(
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                children: List.generate(model.getCharClassCount, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextButton(
-                      onPressed: () {
-                        model.setCharClassId(index);
-                        locator<NavigationService>().navigateTo(Routes.talentTreeView);
-                      },
-                      child: Image.asset(model.getCharClassIconForId(index)),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                      ),
-                    ),
-                  );
-                }),
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CharClassesButtonView(charClassId: 0),
+                    CharClassesButtonView(charClassId: 1),
+                    CharClassesButtonView(charClassId: 2),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CharClassesButtonView(charClassId: 3),
+                    CharClassesButtonView(charClassId: 4),
+                    CharClassesButtonView(charClassId: 5),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CharClassesButtonView(charClassId: 6),
+                    CharClassesButtonView(charClassId: 7),
+                    CharClassesButtonView(charClassId: 8),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    model.getExpansionId == 2 ? const CharClassesButtonView(charClassId: 9) : const SizedBox.shrink(),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

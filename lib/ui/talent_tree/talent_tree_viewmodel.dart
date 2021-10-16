@@ -22,6 +22,8 @@ class TalentTreeViewModel extends BaseViewModel {
 
   int get getTalentIndex => 0;
 
+  String get getEmptyTalentIcon => _imageService.getEmptyTalentIcon;
+
   bool showTalentOnIndex(int index) => _tcService.showTalentOnIndex(index);
 
   Talent get getCurrentTalent {

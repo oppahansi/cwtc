@@ -1,3 +1,4 @@
+import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -9,6 +10,7 @@ class TalentTreeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ViewModelBuilder<TalentTreeViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
@@ -27,6 +29,7 @@ class TalentTreeView extends StatelessWidget {
               children: [
                 GridView.count(
                   crossAxisCount: 4,
+                  shrinkWrap: true,
                   children: List.generate(model.getTreeLength, (index) {
                     Widget widget = const SizedBox.shrink();
 
