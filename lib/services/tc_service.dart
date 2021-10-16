@@ -1,3 +1,5 @@
+import 'package:classic_wow_talent_calculator_stacked/data_models/dependency.dart';
+
 import '../data_models/rank.dart';
 import '../constants/constants.dart';
 import '../data_models/char_class.dart';
@@ -5,11 +7,6 @@ import '../data_models/spec.dart';
 import '../data_models/talent.dart';
 
 class TCService {
-  Map<int, List<CharClass>> _charClassesMap = {};
-  Map<int, List<Spec>> _specsMap = {};
-  Map<int, List<Talent>> _talentsMap = {};
-  Map<int, List<Rank>> _ranksMap = {};
-
   final List<List<List<int>>> _talentTreeState = [
     [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -28,13 +25,20 @@ class TCService {
     ]
   ];
 
+  Map<int, List<CharClass>> _charClassesMap = {};
+  Map<int, List<Spec>> _specsMap = {};
+  Map<int, List<Talent>> _talentsMap = {};
+  Map<int, List<Rank>> _ranksMap = {};
+  Map<int, List<Dependency>> _dependenciesMap = {};
+
   int _expansionId = 0;
   int _charClassId = 0;
   int _specId = 0;
   int _pointsLeft = 0;
   int _requiredLevel = 10;
+  int _spentPoints = 0;
 
-  get getCharClassCount => _charClassesMap[_expansionId]!.length;
+  int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
@@ -52,7 +56,17 @@ class TCService {
 
   int get getTreeLength => Constants.talentTeeLengths[_expansionId];
 
-  void setExpansionId(int expansionId) => _expansionId = expansionId;
+  void setExpansionId(int expansionId) {
+    _expansionId = expansionId;
+
+    _charClassId = 0;
+    _specId = 0;
+    _pointsLeft = Constants.availablePoints[_expansionId];
+    _requiredLevel = 10;
+    _spentPoints = 0;
+
+    resetTalentTreeState();
+  }
 
   int get getExpansionId => _expansionId;
 
@@ -70,11 +84,15 @@ class TCService {
 
   int get getSpecId => _specId;
 
-  void decrementPointsLeft() => _pointsLeft = Constants.availablePoints[_expansionId];
+  void decrementPointsLeft() => _pointsLeft--;
 
   void incrementPointsLeft() => _pointsLeft++;
 
   int get getPointsLeft => _pointsLeft;
+
+  void incrementSpentPoints() => _spentPoints++;
+
+  int get getSpentPoints => _spentPoints;
 
   void incrementRequiredLevel() => _requiredLevel++;
 
@@ -97,7 +115,30 @@ class TCService {
 
   void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
 
+  void setDependenciesMap(Map<int, List<Dependency>> dependenciesMap) => _dependenciesMap = dependenciesMap;
+
   String getCharClassIcon(int charClassId) => _charClassesMap[_expansionId]![charClassId].icon;
 
   void setCharClassId(int charClassId) => _charClassId = charClassId;
+
+  void mapData() {
+    for (var expansion in _charClassesMap.keys) {
+      for (var charClass in _charClassesMap[_expansionId]!) {
+        List<Spec> specs = _specsMap[expansion]!.where((element) => element.classId == charClass.id).toList();
+
+        for (var spec in specs) {
+          List<Talent> talents = _talentsMap[expansion]!.where((element) => element.specId == spec.id && element.classId == charClass.id).toList();
+
+          for (var talent in talents) {
+            List<Rank> ranks = _ranksMap[expansion]!.where((element) => element.talentId == talent.id).toList();
+            talent.ranks = ranks;
+          }
+
+          spec.talents = talents;
+        }
+
+        charClass.specs = specs;
+      }
+    }
+  }
 }

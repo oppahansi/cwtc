@@ -2,6 +2,7 @@ import 'package:classic_wow_talent_calculator_stacked/app/app.locator.dart';
 import 'package:classic_wow_talent_calculator_stacked/app/app.router.dart';
 import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:classic_wow_talent_calculator_stacked/data_models/char_class.dart';
+import 'package:classic_wow_talent_calculator_stacked/data_models/dependency.dart';
 import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
 import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
 import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
@@ -23,32 +24,39 @@ class StartUpViewModel extends FutureViewModel {
   String get getAppIcon => _imageService.getAppIcon;
 
   Future init() async {
-    await Future.delayed(const Duration(seconds: 3));
     Map<int, List<CharClass>> charClassesMap = {};
     Map<int, List<Spec>> specsMap = {};
     Map<int, List<Talent>> talentsMap = {};
     Map<int, List<Rank>> ranksMap = {};
+    Map<int, List<Dependency>> dependenciesMap = {};
 
     for (var expansion in Expansions.values) {
-      List<CharClass> charClasses = await _dbService.getCharClasses(expansion.toShortString());
-      List<Spec> specs = await _dbService.getSpecsByExpansion(expansion.toShortString());
-      List<Talent> talents = await _dbService.getTalentsByExpansion(expansion.toShortString());
-      List<Rank> ranks = await _dbService.getRanksByExpansion(expansion.toShortString());
+      var expansionString = expansion.toShortString();
+      List<CharClass> charClasses = await _dbService.getCharClasses(expansionString);
+      List<Spec> specs = await _dbService.getSpecsByExpansion(expansionString);
+      List<Talent> talents = await _dbService.getTalentsByExpansion(expansionString);
+      List<Rank> ranks = await _dbService.getRanksByExpansion(expansionString);
+      List<Dependency> dependencies = await _dbService.getDependenciesByExpansion(expansionString);
 
       charClassesMap.putIfAbsent(expansion.index, () => charClasses);
       specsMap.putIfAbsent(expansion.index, () => specs);
       talentsMap.putIfAbsent(expansion.index, () => talents);
       ranksMap.putIfAbsent(expansion.index, () => ranks);
+      dependenciesMap.putIfAbsent(expansion.index, () => dependencies);
     }
 
     _tcService.setCharClassesMap(charClassesMap);
     _tcService.setSpecsMap(specsMap);
     _tcService.setTalentsMap(talentsMap);
     _tcService.setRanksMap(ranksMap);
+    _tcService.setDependenciesMap(dependenciesMap);
+
+    _tcService.mapData();
   }
 
   @override
   Future futureToRun() async {
+    await Future.delayed(const Duration(seconds: 3));
     await init();
     _navigationService.replaceWith(Routes.expansionsView);
   }

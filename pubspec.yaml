@@ -56,6 +56,9 @@ dev_dependencies:
   # Rainbow
   rainbow_color:
 
+  # Align Positioned
+  align_positioned:
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -83,6 +86,7 @@ flutter:
     - assets/
     - assets/data/
     - assets/images/
+    - assets/images/arrows/
     - assets/images/bgs/
     - assets/images/icons/
 

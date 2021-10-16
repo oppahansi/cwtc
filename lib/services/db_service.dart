@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:classic_wow_talent_calculator_stacked/data_models/dependency.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -131,5 +132,18 @@ class DBService {
     }
 
     return ranks;
+  }
+
+  Future<List<Dependency>> getDependenciesByExpansion(String expansion) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("dependencies");
+    List<Dependency> dependencies = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Dependency dependency = Dependency.fromMap(rsultRow);
+      dependencies.add(dependency);
+    }
+
+    return dependencies;
   }
 }

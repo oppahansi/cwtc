@@ -1,16 +1,13 @@
 import 'package:stacked/stacked.dart';
 
 import '../../../app/app.locator.dart';
-import '../../../data_models/rank.dart';
 import '../../../data_models/talent.dart';
-import '../../../services/db_service.dart';
 import '../../../services/image_service.dart';
 import '../../../services/tc_service.dart';
 
 class TalentViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
-  final _dbService = locator<DBService>();
 
   final Talent talent;
 
@@ -19,6 +16,15 @@ class TalentViewModel extends BaseViewModel {
   var _talentPoints = 0;
 
   TalentViewModel(this.talent);
+
+  bool isMaxedOut() {
+    if (_talentPoints == talent.ranks.length) {
+      notifyListeners();
+      return true;
+    }
+
+    return false;
+  }
 
   void setTalentId(int talentId) => _talentId = talentId;
 
@@ -34,7 +40,7 @@ class TalentViewModel extends BaseViewModel {
     if (_talentPoints >= talent.ranks.length) return;
 
     _talentPoints++;
-    _tcService.decrementPointsLeft();
+    _tcService.incrementSpentPoints();
     notifyListeners();
   }
 
@@ -46,4 +52,11 @@ class TalentViewModel extends BaseViewModel {
   }
 
   int get getTalentPoints => _talentPoints;
+
+  bool isTalentDisabled() {
+    if (talent.row == 0 && talent.requires == 0) return false;
+    if (_tcService.getSpentPoints >= talent.row * 5) return false;
+
+    return true;
+  }
 }
