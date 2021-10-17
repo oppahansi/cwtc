@@ -1,7 +1,9 @@
-import 'package:classic_wow_talent_calculator_stacked/ui/start_up/start_up_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:rainbow_color/rainbow_color.dart';
+
+import '../widgets/app_title.dart';
+import 'start_up_viewmodel.dart';
 
 class StartUpView extends StatefulWidget {
   const StartUpView({Key? key}) : super(key: key);
@@ -56,37 +58,9 @@ class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStat
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Text(
-                  "Classic WoW\nTalent Calculator",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontFamily: "LifeCraft",
-                    shadows: [
-                      Shadow(
-                          // bottomLeft
-                          offset: Offset(-1.5, -1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // bottomRight
-                          offset: Offset(1.5, -1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // topRight
-                          offset: Offset(1.5, 1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // topLeft
-                          offset: Offset(-1.5, 1.5),
-                          color: Colors.white),
-                    ],
-                  ),
-                ),
+                const AppTitle(),
                 const SizedBox(height: 25),
-                SizedBox(
-                  width: 200,
-                  child: Image.asset(model.getAppIcon),
-                ),
+                SizedBox(width: 200, child: Image.asset(model.getAppIcon)),
                 const SizedBox(height: 50),
                 SizedBox(
                   height: 50,

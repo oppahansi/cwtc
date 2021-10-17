@@ -1,10 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/app/app.locator.dart';
-import 'package:classic_wow_talent_calculator_stacked/app/app.router.dart';
-import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/char_classes/char_class_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+
+import '../../../app/size_config.dart';
+import '../char_class_viewmodel.dart';
 
 class CharClassesButtonView extends StatelessWidget {
   final int charClassId;
@@ -20,7 +18,7 @@ class CharClassesButtonView extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               model.setCharClassId(charClassId);
-              locator<NavigationService>().navigateTo(Routes.talentTreeView);
+              model.navigateToTalentTreeView();
             },
             child: SizedBox(
               height: SizeConfig.safeBlockHorizontal! * 20,

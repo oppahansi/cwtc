@@ -1,11 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/char_classes/char_class_button/char_class_button_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import '../../app/app.locator.dart';
-import '../../app/app.router.dart';
+import '../../app/size_config.dart';
+import 'char_class_button/char_class_button_view.dart';
 import 'char_class_viewmodel.dart';
 
 class CharClassView extends StatelessWidget {
@@ -19,6 +16,7 @@ class CharClassView extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text(model.getExpansionFull),
+            backgroundColor: model.getExpansionColor,
           ),
           body: Container(
             decoration: BoxDecoration(

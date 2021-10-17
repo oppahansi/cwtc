@@ -1,6 +1,8 @@
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../app/app.locator.dart';
+import '../../app/app.router.dart';
 import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
 
@@ -16,7 +18,11 @@ class CharClassViewModel extends BaseViewModel {
 
   int get getCharClassCount => _tcService.getCharClassCount;
 
+  get getExpansionColor => _tcService.getExpansionColor;
+
   String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
 
   void setCharClassId(int charClassId) => _tcService.setCharClassId(charClassId);
+
+  void navigateToTalentTreeView() => locator<NavigationService>().navigateTo(Routes.talentTreeView);
 }

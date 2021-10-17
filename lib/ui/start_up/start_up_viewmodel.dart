@@ -1,14 +1,14 @@
-import 'package:classic_wow_talent_calculator_stacked/app/app.locator.dart';
-import 'package:classic_wow_talent_calculator_stacked/app/app.router.dart';
-import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/char_class.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/dependency.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/rank.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
-import 'package:classic_wow_talent_calculator_stacked/data_models/talent.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../app/app.locator.dart';
+import '../../app/app.router.dart';
+import '../../constants/constants.dart';
+import '../../data_models/char_class.dart';
+import '../../data_models/dependency.dart';
+import '../../data_models/rank.dart';
+import '../../data_models/spec.dart';
+import '../../data_models/talent.dart';
 import '../../services/image_service.dart';
 import '../../services/db_service.dart';
 import '../../services/tc_service.dart';
@@ -56,7 +56,7 @@ class StartUpViewModel extends FutureViewModel {
 
   @override
   Future futureToRun() async {
-    await Future.delayed(const Duration(seconds: 3));
+    //await Future.delayed(const Duration(seconds: 3));
     await init();
     _navigationService.replaceWith(Routes.expansionsView);
   }

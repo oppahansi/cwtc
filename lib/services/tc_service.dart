@@ -1,8 +1,9 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/dependency.dart';
+import 'package:flutter/material.dart';
 
-import '../data_models/rank.dart';
 import '../constants/constants.dart';
 import '../data_models/char_class.dart';
+import '../data_models/dependency.dart';
+import '../data_models/rank.dart';
 import '../data_models/spec.dart';
 import '../data_models/talent.dart';
 
@@ -39,6 +40,8 @@ class TCService {
   int _spentPoints = 0;
 
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
+
+  Color get getExpansionColor => Constants.expansionColors[_expansionId];
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {

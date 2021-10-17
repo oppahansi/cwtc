@@ -1,4 +1,4 @@
-import 'package:classic_wow_talent_calculator_stacked/data_models/spec.dart';
+import 'spec.dart';
 
 class CharClass {
   final int id;

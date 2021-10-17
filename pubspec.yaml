@@ -60,7 +60,7 @@ dev_dependencies:
   align_positioned:
 
   # Ads
-  google_mobile_ads:
+  # google_mobile_ads:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
