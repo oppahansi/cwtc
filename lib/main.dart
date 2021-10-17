@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
@@ -7,6 +8,7 @@ import 'app/app.router.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
+  MobileAds.instance.initialize();
   runApp(const MyApp());
 }
 

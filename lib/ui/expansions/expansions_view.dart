@@ -1,15 +1,57 @@
+import 'package:classic_wow_talent_calculator_stacked/app/ads.dart';
 import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../constants/constants.dart';
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
 import 'exapnsions_viewmodel.dart';
 
-class ExpansionsView extends StatelessWidget {
+class ExpansionsView extends StatefulWidget {
   const ExpansionsView({Key? key}) : super(key: key);
+
+  @override
+  State<ExpansionsView> createState() => _ExpansionsViewState();
+}
+
+class _ExpansionsViewState extends State<ExpansionsView> {
+  late BannerAd _bottomBannerAd;
+
+  bool _isBottomBannerAdLoaded = false;
+
+  void _createBottomBannerAd() {
+    _bottomBannerAd = BannerAd(
+      adUnitId: AdManager.bannerAdUnitId,
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          setState(() {
+            _isBottomBannerAdLoaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+    );
+    _bottomBannerAd.load();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _createBottomBannerAd();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _bottomBannerAd.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,11 +154,14 @@ class ExpansionsView extends StatelessWidget {
                   // TODO add load button for loading saved talent build
                   // TODO add settings button to configure app
                 ),
-                const SizedBox(height: 150),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [],
-                )
+                const SizedBox(height: 75),
+                _isBottomBannerAdLoaded
+                    ? SizedBox(
+                        height: _bottomBannerAd.size.height.toDouble(),
+                        width: _bottomBannerAd.size.width.toDouble(),
+                        child: AdWidget(ad: _bottomBannerAd),
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
