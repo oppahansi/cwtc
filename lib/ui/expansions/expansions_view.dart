@@ -1,12 +1,10 @@
 import 'expansions_button/expansions_button_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-//import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../widgets/app_title.dart';
-//import '../../app/ads.dart';
 import '../../app/size_config.dart';
 import '../../constants/constants.dart';
+import '../widgets/app_title.dart';
 import 'exapnsions_viewmodel.dart';
 
 class ExpansionsView extends StatefulWidget {
@@ -17,41 +15,6 @@ class ExpansionsView extends StatefulWidget {
 }
 
 class _ExpansionsViewState extends State<ExpansionsView> {
-  //late BannerAd _bottomBannerAd;
-
-  // bool _isBottomBannerAdLoaded = false;
-
-  // void _createBottomBannerAd() {
-  //   _bottomBannerAd = BannerAd(
-  //     adUnitId: AdManager.bannerAdUnitId,
-  //     size: AdSize.banner,
-  //     request: const AdRequest(),
-  //     listener: BannerAdListener(
-  //       onAdLoaded: (_) {
-  //         setState(() {
-  //           _isBottomBannerAdLoaded = true;
-  //         });
-  //       },
-  //       onAdFailedToLoad: (ad, error) {
-  //         ad.dispose();
-  //       },
-  //     ),
-  //   );
-  //   _bottomBannerAd.load();
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _createBottomBannerAd();
-  // }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _bottomBannerAd.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -59,12 +22,7 @@ class _ExpansionsViewState extends State<ExpansionsView> {
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
           body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(model.getRngBgImageFilePath),
-                fit: BoxFit.fill,
-              ),
-            ),
+            decoration: Constants.getBgDecoration(model.getRngBgImageFilePath),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -81,13 +39,6 @@ class _ExpansionsViewState extends State<ExpansionsView> {
                   // TODO add settings button to configure app
                 ),
                 const SizedBox(height: 75),
-                // _isBottomBannerAdLoaded
-                //     ? SizedBox(
-                //         height: _bottomBannerAd.size.height.toDouble(),
-                //         width: _bottomBannerAd.size.width.toDouble(),
-                //         child: AdWidget(ad: _bottomBannerAd),
-                //       )
-                //     : const SizedBox.shrink(),
               ],
             ),
           ),

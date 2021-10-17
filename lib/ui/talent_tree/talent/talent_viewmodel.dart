@@ -9,7 +9,7 @@ class TalentViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
 
-  final Talent talent;
+  final Talent? talent;
 
   var _talentId = 0;
   var _talentIndex = 0;
@@ -18,7 +18,7 @@ class TalentViewModel extends BaseViewModel {
   TalentViewModel(this.talent);
 
   bool isMaxedOut() {
-    if (_talentPoints == talent.ranks.length) {
+    if (_talentPoints == talent!.ranks.length) {
       notifyListeners();
       return true;
     }
@@ -37,7 +37,7 @@ class TalentViewModel extends BaseViewModel {
   String getIcon(String icon) => _imageService.getTalentIcon(icon);
 
   void incrementTalentPoints() {
-    if (_talentPoints >= talent.ranks.length) return;
+    if (_talentPoints >= talent!.ranks.length) return;
 
     _talentPoints++;
     _tcService.incrementSpentPoints();
@@ -54,8 +54,8 @@ class TalentViewModel extends BaseViewModel {
   int get getTalentPoints => _talentPoints;
 
   bool isTalentDisabled() {
-    if (talent.row == 0 && talent.requires == 0) return false;
-    if (_tcService.getSpentPoints >= talent.row * 5) return false;
+    if (talent!.row == 0 && talent!.requires == 0) return false;
+    if (_tcService.getSpentPoints >= talent!.row * 5) return false;
 
     return true;
   }

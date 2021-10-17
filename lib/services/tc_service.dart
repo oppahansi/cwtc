@@ -39,9 +39,13 @@ class TCService {
   int _requiredLevel = 10;
   int _spentPoints = 0;
 
+  int _talentIndex = 0;
+
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
   Color get getExpansionColor => Constants.expansionColors[_expansionId];
+
+  Talent get getTalent => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
@@ -59,17 +63,7 @@ class TCService {
 
   int get getTreeLength => Constants.talentTeeLengths[_expansionId];
 
-  void setExpansionId(int expansionId) {
-    _expansionId = expansionId;
-
-    _charClassId = 0;
-    _specId = 0;
-    _pointsLeft = Constants.availablePoints[_expansionId];
-    _requiredLevel = 10;
-    _spentPoints = 0;
-
-    resetTalentTreeState();
-  }
+  void setExpansionId(int expansionId) => _expansionId = expansionId;
 
   int get getExpansionId => _expansionId;
 
@@ -105,8 +99,8 @@ class TCService {
 
   Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
-  Talent getTalentForIndex(int index) =>
-      _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[index];
+  Talent getTalentForIndex(int talentIndex) =>
+      _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[talentIndex];
 
   bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClassId][_specId][index] == 1;
 
@@ -122,7 +116,16 @@ class TCService {
 
   String getCharClassIcon(int charClassId) => _charClassesMap[_expansionId]![charClassId].icon;
 
-  void setCharClassId(int charClassId) => _charClassId = charClassId;
+  void setCharClassId(int charClassId) {
+    _charClassId = charClassId;
+    _specId = 0;
+    _specId = 0;
+    _pointsLeft = Constants.availablePoints[_expansionId];
+    _requiredLevel = 10;
+    _spentPoints = 0;
+
+    resetTalentTreeState();
+  }
 
   void mapData() {
     for (var expansion in _charClassesMap.keys) {

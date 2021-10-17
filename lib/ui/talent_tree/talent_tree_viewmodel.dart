@@ -1,3 +1,6 @@
+import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
+import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent/talent_view.dart';
+import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_tree_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -24,12 +27,17 @@ class TalentTreeViewModel extends BaseViewModel {
 
   String get getEmptyTalentIcon => _imageService.getEmptyTalentIcon;
 
-  bool showTalentOnIndex(int index) => _tcService.showTalentOnIndex(index);
+  bool showTalentOnTalentTreePosition(int index) => _tcService.showTalentOnIndex(index);
 
-  Talent get getCurrentTalent {
-    var currentTalent = _tcService.getTalentForIndex(_talentIndex);
-    _talentIndex++;
-    return currentTalent;
+  Talent getCurrentTalent(int talentIndex) => _tcService.getTalentForIndex(talentIndex);
+
+  Widget getTalentForTreePosition(int talentTreePosition, BuildContext context) {
+    if (!showTalentOnTalentTreePosition(talentTreePosition)) {
+      SizeConfig().init(context);
+      return SizedBox(height: SizeConfig.safeBlockVertical! * 20, width: SizeConfig.safeBlockHorizontal! * 20);
+    }
+
+    return TalentView(talent: _tcService.getTalent);
   }
 }
 

@@ -1,3 +1,4 @@
+import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,12 +20,7 @@ class CharClassView extends StatelessWidget {
             backgroundColor: model.getExpansionColor,
           ),
           body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(model.getRngBgImageFilePath),
-                fit: BoxFit.fill,
-              ),
-            ),
+            decoration: Constants.getBgDecoration(model.getRngBgImageFilePath),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
