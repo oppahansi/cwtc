@@ -63,15 +63,12 @@ class TalentView extends StatelessWidget {
             AlignPositioned(
               child: model.talentEnablesAnother(talent.id)
                   ? CustomPaint(
-                      size: Size(
-                        SizeConfig.safeBlockHorizontal! * 16,
-                        SizeConfig.safeBlockVertical! * 16 * 0.33,
-                      ), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                      painter: ArrowShortRight(model.isTalentDisabled(talent.id)),
+                      size: Size(SizeConfig.safeBlockHorizontal! * 15, SizeConfig.safeBlockVertical! * 5),
+                      painter: ArrowShortRightPainter(model.isTalentDisabled(talent.id)),
                     )
                   : const SizedBox.shrink(),
               alignment: Alignment.centerRight,
-              moveByChildWidth: 0.15,
+              moveByChildWidth: 0.5,
             )
           ],
         );
