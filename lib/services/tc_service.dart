@@ -47,18 +47,6 @@ class TCService {
 
   Talent get getTalent => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
 
-  void resetTalentTreeState() {
-    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
-      resetSpecState(i);
-    }
-  }
-
-  void resetSpecState(int specId) {
-    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
-      _talentTreeState[_expansionId][_specId][i] = 0;
-    }
-  }
-
   String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
 
   int get getTreeLength => Constants.talentTeeLengths[_expansionId];
@@ -123,6 +111,7 @@ class TCService {
     _pointsLeft = Constants.availablePoints[_expansionId];
     _requiredLevel = 10;
     _spentPoints = 0;
+    _talentIndex = 0;
 
     resetTalentTreeState();
   }
@@ -145,6 +134,27 @@ class TCService {
 
         charClass.specs = specs;
       }
+    }
+  }
+
+  bool talentEnablesAnother(int talentId) {
+    var dependencies = _dependenciesMap[_expansionId];
+    var dependency = dependencies!.firstWhere((element) => element.requires == talentId, orElse: () => dependencies.first);
+
+    return dependency.requires == talentId;
+  }
+
+  int getTalentPoints(int talentTreePosition) => _talentTreeState[_expansionId][_specId][talentTreePosition];
+
+  void resetTalentTreeState() {
+    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
+      resetSpecState(i);
+    }
+  }
+
+  void resetSpecState(int specId) {
+    for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
+      _talentTreeState[_expansionId][_specId][i] = 0;
     }
   }
 }

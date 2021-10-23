@@ -221,6 +221,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -618,6 +623,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  widget_finder:
+    dependency: "direct dev"
+    description:
+      name: widget_finder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   win32:
     dependency: transitive
     description:

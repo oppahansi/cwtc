@@ -47,11 +47,8 @@ class StackedRouter extends RouterBase {
       );
     },
     ExpansionsView: (data) {
-      var args = data.getArgs<ExpansionsViewArguments>(
-        orElse: () => ExpansionsViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => ExpansionsView(key: args.key),
+        builder: (context) => const ExpansionsView(),
         settings: data,
       );
     },
@@ -68,14 +65,4 @@ class StackedRouter extends RouterBase {
       );
     },
   };
-}
-
-/// ************************************************************************
-/// Arguments holder classes
-/// *************************************************************************
-
-/// ExpansionsView arguments holder class
-class ExpansionsViewArguments {
-  final Key? key;
-  ExpansionsViewArguments({this.key});
 }

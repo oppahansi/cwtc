@@ -1,5 +1,9 @@
+import 'package:align_positioned/align_positioned.dart';
+import 'package:classic_wow_talent_calculator_stacked/constants/arrow_painters.dart';
+import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:widget_finder/widget_finder.dart';
 
 import '../../app/size_config.dart';
 import 'talent/talent_view.dart';
@@ -11,6 +15,7 @@ class TalentTreeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    double length = SizeConfig.safeBlockHorizontal! * 20;
     return ViewModelBuilder<TalentTreeViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
@@ -25,24 +30,13 @@ class TalentTreeView extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            child: Column(
+            child: GridView.count(
+              crossAxisCount: 4,
+              crossAxisSpacing: 0.0,
               children: [
-                Row(
-                  children: [
-                    model.getTalentForTreePosition(0, context),
-                    model.getTalentForTreePosition(1, context),
-                    model.getTalentForTreePosition(2, context),
-                    model.getTalentForTreePosition(3, context),
-                  ],
-                ),
-                Row(
-                  children: [
-                    model.getTalentForTreePosition(4, context),
-                    model.getTalentForTreePosition(5, context),
-                    model.getTalentForTreePosition(6, context),
-                    model.getTalentForTreePosition(7, context),
-                  ],
-                ),
+                ...List.generate(model.getTreeLength, (index) {
+                  return model.getTalentForTreePosition(index, length);
+                }),
               ],
             ),
           ),

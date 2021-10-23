@@ -1,96 +1,82 @@
 import 'package:align_positioned/align_positioned.dart';
+import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_tree_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/size_config.dart';
 import '../../../constants/arrow_painters.dart';
 import '../../../data_models/talent.dart';
-import 'talent_viewmodel.dart';
 
 class TalentView extends StatelessWidget {
   final Talent talent;
+  final int talentTreePosition;
 
-  const TalentView({required this.talent, Key? key}) : super(key: key);
+  const TalentView({required this.talentTreePosition, required this.talent, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return ViewModelBuilder<TalentViewModel>.reactive(
-      builder: (context, model, child) => Expanded(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: TextButton(
-            onPressed: () {},
-            child: SizedBox(
-              height: SizeConfig.safeBlockVertical! * 10,
-              width: SizeConfig.safeBlockHorizontal! * 10,
-              child: Image.asset(model.getIcon(talent.icon), fit: BoxFit.cover),
+    return ViewModelBuilder<TalentTreeViewModel>.reactive(
+      builder: (context, model, child) {
+        model.addTalent(talent);
+        return Stack(
+          clipBehavior: Clip.none,
+          children: [
+            TextButton(
+              onPressed: () {},
+              child: Container(
+                height: SizeConfig.safeBlockVertical! * 20,
+                width: SizeConfig.safeBlockHorizontal! * 20,
+                margin: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(model.getIcon(talent.icon)),
+                    colorFilter: model.isTalentDisabled(talent.id) ? const ColorFilter.mode(Colors.grey, BlendMode.saturation) : null,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: Border.all(
+                    width: 3,
+                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
+                  ),
+                ),
+              ),
             ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.transparent,
-              shadowColor: Colors.transparent,
+            AlignPositioned(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(
+                    width: 2,
+                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
+                  ),
+                ),
+                child: Text(
+                  model.getTalentPoints(talentTreePosition).toString(),
+                  style: TextStyle(color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-      //Stack(
-      //   clipBehavior: Clip.none,
-      //   children: [
-      //     TextButton(
-      //       onPressed: () {
-      //         model.isTalentDisabled() ? null : model.incrementTalentPoints();
-      //       },
-      //       style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
-      //       child: Container(
-      //         height: SizeConfig.safeBlockVertical! * 15,
-      //         width: SizeConfig.safeBlockHorizontal! * 15,
-      //         margin: const EdgeInsets.all(5),
-      //         decoration: BoxDecoration(
-      //           image: DecorationImage(
-      //             fit: BoxFit.fill,
-      //             image: AssetImage(model.getIcon(talent.icon)),
-      //             colorFilter: model.isTalentDisabled() ? const ColorFilter.mode(Colors.grey, BlendMode.saturation) : null,
-      //           ),
-      //           borderRadius: const BorderRadius.all(Radius.circular(8)),
-      //           border: Border.all(
-      //             width: 3,
-      //             color: model.isTalentDisabled() ? Colors.grey : Colors.green.shade400,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      // AlignPositioned(
-      //   alignment: Alignment.bottomRight,
-      //   child: Container(
-      //     padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
-      //     decoration: BoxDecoration(
-      //       color: Colors.black,
-      //       borderRadius: const BorderRadius.all(Radius.circular(5)),
-      //       border: Border.all(
-      //         width: 2,
-      //         color: model.isTalentDisabled() ? Colors.grey : Colors.green.shade400,
-      //       ),
-      //     ),
-      //     child: Text(
-      //       model.getTalentPoints.toString(),
-      //       style: TextStyle(color: model.isTalentDisabled() ? Colors.grey : Colors.green.shade400),
-      //     ),
-      //   ),
-      // ),
-      // AlignPositioned(
-      //   child: CustomPaint(
-      //     size: Size(
-      //         SizeConfig.safeBlockHorizontal! * 32,
-      //         (SizeConfig.safeBlockHorizontal! * 32 * 0.3333333333333333)
-      //             .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-      //     painter: ArrowShortRight(),
-      //   ),
-      //   alignment: Alignment.centerRight,
-      //   moveByChildWidth: 0.15,
-      // ),
-      //],
-      // ),
-      viewModelBuilder: () => TalentViewModel(talent),
+            AlignPositioned(
+              child: model.talentEnablesAnother(talent.id)
+                  ? CustomPaint(
+                      size: Size(
+                        SizeConfig.safeBlockHorizontal! * 16,
+                        SizeConfig.safeBlockVertical! * 16 * 0.33,
+                      ), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                      painter: ArrowShortRight(model.isTalentDisabled(talent.id)),
+                    )
+                  : const SizedBox.shrink(),
+              alignment: Alignment.centerRight,
+              moveByChildWidth: 0.15,
+            )
+          ],
+        );
+      },
+      viewModelBuilder: () => TalentTreeViewModel(),
     );
   }
 }

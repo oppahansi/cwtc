@@ -59,6 +59,9 @@ dev_dependencies:
   # Align Positioned
   align_positioned:
 
+  # Widget Finder
+  widget_finder:
+
   # Ads
   # google_mobile_ads:
 

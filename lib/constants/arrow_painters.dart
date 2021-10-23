@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ArrowShortRight extends CustomPainter {
+  final bool disabled;
+
+  ArrowShortRight(this.disabled);
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
-      ..color = const Color.fromARGB(255, 255, 240, 16)
+      ..color = disabled ? Colors.grey : Colors.yellow.shade600
       ..style = PaintingStyle.fill
       ..strokeWidth = 1.0
       ..shader;
