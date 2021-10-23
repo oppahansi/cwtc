@@ -1,4 +1,3 @@
-import 'expansions_button/expansions_button_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -6,6 +5,7 @@ import '../../app/size_config.dart';
 import '../../constants/constants.dart';
 import '../widgets/app_title.dart';
 import 'exapnsions_viewmodel.dart';
+import 'expansions_button/expansions_button_view.dart';
 
 class ExpansionsView extends StatefulWidget {
   const ExpansionsView({Key? key}) : super(key: key);

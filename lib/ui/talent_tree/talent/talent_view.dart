@@ -1,11 +1,11 @@
 import 'package:align_positioned/align_positioned.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_tree_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/size_config.dart';
 import '../../../constants/arrow_painters.dart';
 import '../../../data_models/talent.dart';
+import '../talent_tree_viewmodel.dart';
 
 class TalentView extends StatelessWidget {
   final Talent talent;

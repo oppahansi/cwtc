@@ -1,11 +1,6 @@
-import 'package:align_positioned/align_positioned.dart';
-import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
-import 'package:classic_wow_talent_calculator_stacked/constants/arrow_painters.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent/talent_view.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_tree_view.dart';
+import 'talent/talent_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:widget_finder/widget_finder.dart';
 
 import '../../app/app.locator.dart';
 import '../../data_models/talent.dart';

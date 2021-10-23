@@ -1,8 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../app/size_config.dart';
+import '../../constants/constants.dart';
 import 'char_class_button/char_class_button_view.dart';
 import 'char_class_viewmodel.dart';
 
