@@ -19,6 +19,19 @@ enum CharClasses {
   deathknight,
 }
 
+enum ArrowTypes {
+  short,
+  shortRight,
+  shortLeft,
+  medium,
+  mediumRight,
+  mediumLeft,
+  long,
+  longRight,
+  longLeft,
+  longest,
+}
+
 extension ParseToString on Enum {
   String toShortString() {
     return toString().split('.').last;
