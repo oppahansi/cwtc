@@ -1,9 +1,10 @@
 import 'package:align_positioned/align_positioned.dart';
+import 'package:classic_wow_talent_calculator_stacked/constants/arrow_short.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/size_config.dart';
-import '../../../constants/arrow_painters.dart';
+import '../../../constants/arrow_short_right.dart';
 import '../../../data_models/talent.dart';
 import '../talent_tree_viewmodel.dart';
 
@@ -63,12 +64,12 @@ class TalentView extends StatelessWidget {
             AlignPositioned(
               child: model.talentEnablesAnother(talent.id)
                   ? CustomPaint(
-                      size: Size(SizeConfig.safeBlockHorizontal! * 15, SizeConfig.safeBlockVertical! * 5),
-                      painter: ArrowShortRightPainter(model.isTalentDisabled(talent.id)),
+                      size: Size(SizeConfig.safeBlockHorizontal! * 8, SizeConfig.safeBlockVertical! * 8),
+                      painter: ArrowShort(model.isTalentDisabled(talent.id)),
                     )
                   : const SizedBox.shrink(),
-              alignment: Alignment.centerRight,
-              moveByChildWidth: 0.5,
+              alignment: Alignment.bottomCenter,
+              moveByChildHeight: 0.5,
             )
           ],
         );

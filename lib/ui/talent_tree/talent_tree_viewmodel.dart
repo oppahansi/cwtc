@@ -46,12 +46,16 @@ class TalentTreeViewModel extends BaseViewModel {
   Widget getTalentForTreePosition(int talentTreePosition, double length) {
     if (!showTalentOnTalentTreePosition(talentTreePosition)) return SizedBox(height: length, width: length);
 
-    Talent talent = _tcService.getTalent;
+    Talent talent = _tcService.getTalent();
 
     return TalentView(talentTreePosition: talentTreePosition, talent: talent);
   }
 
   int getTalentPoints(int talentTreePosition) => _tcService.getTalentPoints(talentTreePosition);
+
+  String getSpecName(int specId) => _tcService.getSpecName(specId);
+
+  void setSpecId(int specId) => _tcService.setSpecId(specId);
 }
 
 extension ColorExtension on String {

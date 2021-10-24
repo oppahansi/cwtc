@@ -38,14 +38,13 @@ class TCService {
   int _pointsLeft = 0;
   int _requiredLevel = 10;
   int _spentPoints = 0;
-
   int _talentIndex = 0;
 
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
   Color get getExpansionColor => Constants.expansionColors[_expansionId];
 
-  Talent get getTalent => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
+  Talent getTalent() => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
 
   String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
 
@@ -65,7 +64,10 @@ class TCService {
 
   String get getCharClassName => _charClassesMap[_expansionId]![_charClassId].name;
 
-  void setSpecId(int specId) => _specId = specId;
+  void setSpecId(int specId) {
+    _specId = specId;
+    _talentIndex = 0;
+  }
 
   int get getSpecId => _specId;
 
@@ -111,7 +113,6 @@ class TCService {
     _pointsLeft = Constants.availablePoints[_expansionId];
     _requiredLevel = 10;
     _spentPoints = 0;
-    _talentIndex = 0;
 
     resetTalentTreeState();
   }
@@ -157,4 +158,7 @@ class TCService {
       _talentTreeState[_expansionId][_specId][i] = 0;
     }
   }
+
+  String getSpecName(int specId) =>
+      _specsMap[_expansionId]!.where((element) => element.classId == _charClassId).firstWhere((element) => element.id == specId).name;
 }
