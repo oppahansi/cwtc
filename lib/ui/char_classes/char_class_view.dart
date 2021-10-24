@@ -16,7 +16,11 @@ class CharClassView extends StatelessWidget {
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text(model.getExpansionFull),
+            foregroundColor: Colors.black87,
+            title: Text(
+              model.getExpansionFull,
+              style: const TextStyle(color: Colors.black87),
+            ),
             backgroundColor: model.getExpansionColor,
           ),
           body: Container(

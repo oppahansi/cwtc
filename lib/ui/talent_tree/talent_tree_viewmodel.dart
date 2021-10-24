@@ -13,6 +13,8 @@ class TalentTreeViewModel extends BaseViewModel {
 
   final List<Talent> _talents = List.empty(growable: true);
 
+  String getSpecIcon(int specId) => _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
+
   String getIcon(String icon) => _imageService.getTalentIcon(icon);
 
   void addTalent(Talent talent) => _talents.add(talent);

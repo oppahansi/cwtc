@@ -19,24 +19,76 @@ class TalentTreeView extends StatelessWidget {
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
-                title: Text(model.getClassName),
+                foregroundColor: Colors.black87,
+                title: Text(
+                  model.getClassName,
+                  style: const TextStyle(color: Colors.black87),
+                ),
                 backgroundColor: model.getClassColor,
-                bottom: TabBar(
-                    indicator: UnderlineTabIndicator(
-                      borderSide: BorderSide(color: model.getClassColor, width: 8.0),
-                      insets: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
+                bottom: PreferredSize(
+                  preferredSize: const Size(double.infinity, 40),
+                  child: Container(
+                    color: model.getClassColor.withAlpha(255),
+                    child: TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicatorColor: Colors.black,
+                      indicatorPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                      tabs: [
+                        Tab(
+                          child: Container(
+                            height: talentImageWidth / 2,
+                            width: talentImageWidth / 2,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(model.getSpecIcon(0)),
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
+                              border: Border.all(
+                                width: 3,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            height: talentImageWidth / 2,
+                            width: talentImageWidth / 2,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(model.getSpecIcon(1)),
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
+                              border: Border.all(
+                                width: 3,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            height: talentImageWidth / 2,
+                            width: talentImageWidth / 2,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(model.getSpecIcon(2)),
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
+                              border: Border.all(
+                                width: 3,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    tabs: [
-                      Tab(
-                        text: model.getSpecName(0),
-                      ),
-                      Tab(
-                        text: model.getSpecName(1),
-                      ),
-                      Tab(
-                        text: model.getSpecName(2),
-                      ),
-                    ])),
+                  ),
+                )),
             body: TabBarView(children: [
               TalentSpecView(specId: 0, talentImageWidth: talentImageWidth),
               TalentSpecView(specId: 1, talentImageWidth: talentImageWidth),

@@ -44,6 +44,8 @@ class TCService {
 
   Color get getExpansionColor => Constants.expansionColors[_expansionId];
 
+  String getSpecIcon(specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).icon;
+
   Talent getTalent() => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
 
   String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
@@ -159,6 +161,5 @@ class TCService {
     }
   }
 
-  String getSpecName(int specId) =>
-      _specsMap[_expansionId]!.where((element) => element.classId == _charClassId).firstWhere((element) => element.id == specId).name;
+  String getSpecName(int specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).name;
 }
