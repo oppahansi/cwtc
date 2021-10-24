@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -18,7 +19,7 @@ class CharClassViewModel extends BaseViewModel {
 
   int get getCharClassCount => _tcService.getCharClassCount;
 
-  get getExpansionColor => _tcService.getExpansionColor;
+  Color get getExpansionColor => _tcService.getExpansionColor;
 
   String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
 

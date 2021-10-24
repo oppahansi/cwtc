@@ -28,7 +28,7 @@ class TalentTreeView extends StatelessWidget {
                 bottom: PreferredSize(
                   preferredSize: const Size(double.infinity, 40),
                   child: Container(
-                    color: model.getClassColor.withAlpha(255),
+                    color: model.getExpansionColor,
                     child: TabBar(
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorColor: Colors.black,

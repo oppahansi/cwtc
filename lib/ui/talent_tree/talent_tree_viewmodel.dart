@@ -58,6 +58,8 @@ class TalentTreeViewModel extends BaseViewModel {
   String getSpecName(int specId) => _tcService.getSpecName(specId);
 
   void setSpecId(int specId) => _tcService.setSpecId(specId);
+
+  Color get getExpansionColor => _tcService.getExpansionColor;
 }
 
 extension ColorExtension on String {
