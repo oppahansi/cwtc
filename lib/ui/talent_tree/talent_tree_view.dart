@@ -1,9 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
-import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_spec/talent_spec_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../app/size_config.dart';
+import 'talent_spec/talent_spec_view.dart';
 import 'talent_tree_viewmodel.dart';
 
 class TalentTreeView extends StatelessWidget {

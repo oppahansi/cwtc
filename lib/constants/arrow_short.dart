@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Shapemaker resource https://i.imgur.com/hT9q9RR.png
+// Shapemaker resource
 
 class ArrowShort extends CustomPainter {
   final bool disabled;

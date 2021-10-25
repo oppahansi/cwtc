@@ -1,6 +1,7 @@
-import 'package:classic_wow_talent_calculator_stacked/ui/talent_tree/talent_tree_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
+import '../talent_tree_viewmodel.dart';
 
 class TalentSpecView extends StatelessWidget {
   final int specId;

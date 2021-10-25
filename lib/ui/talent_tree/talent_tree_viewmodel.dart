@@ -1,4 +1,3 @@
-import 'talent/talent_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -6,6 +5,7 @@ import '../../app/app.locator.dart';
 import '../../data_models/talent.dart';
 import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
+import 'talent/talent_view.dart';
 
 class TalentTreeViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
