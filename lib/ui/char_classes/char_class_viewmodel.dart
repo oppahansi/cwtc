@@ -21,9 +21,12 @@ class CharClassViewModel extends BaseViewModel {
 
   Color get getExpansionColor => _tcService.getExpansionColor;
 
-  String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
+  String getCharClassIconForId(int charClassId) =>
+      _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
 
-  void setCharClassId(int charClassId) => _tcService.setCharClassId(charClassId);
+  void setCharClassId(int charClassId) =>
+      _tcService.setCharClassId(charClassId);
 
-  void navigateToTalentTreeView() => locator<NavigationService>().navigateTo(Routes.talentTreeView);
+  void navigateToTalentTreeView() =>
+      locator<NavigationService>().navigateTo(Routes.talentTreeView);
 }

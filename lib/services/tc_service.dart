@@ -10,19 +10,352 @@ import '../data_models/talent.dart';
 class TCService {
   final List<List<List<int>>> _talentTreeState = [
     [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
     ],
     [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
     ],
     [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
     ]
   ];
 
@@ -44,11 +377,18 @@ class TCService {
 
   Color get getExpansionColor => Constants.expansionColors[_expansionId];
 
-  String getSpecIcon(specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).icon;
+  String getSpecIcon(specId) => _specsMap[_expansionId]!
+      .firstWhere(
+          (element) => element.classId == _charClassId && element.id == specId)
+      .icon;
 
-  Talent getTalent() => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
+  Talent getTalent() => _talentsMap[_expansionId]!
+      .where((element) =>
+          element.classId == _charClassId && element.specId == _specId)
+      .toList()[_talentIndex++];
 
-  String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
+  String get getClassColor =>
+      _charClassesMap[_expansionId]![_charClassId].color;
 
   int get getTreeLength => Constants.talentTeeLengths[_expansionId];
 
@@ -64,7 +404,8 @@ class TCService {
 
   int get getCharClassId => _charClassId;
 
-  String get getCharClassName => _charClassesMap[_expansionId]![_charClassId].name;
+  String get getCharClassName =>
+      _charClassesMap[_expansionId]![_charClassId].name;
 
   void setSpecId(int specId) {
     _specId = specId;
@@ -89,24 +430,33 @@ class TCService {
 
   int get getRequiredLevel => _requiredLevel;
 
-  Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
+  Spec get getSpec =>
+      _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
-  Talent getTalentForIndex(int talentIndex) =>
-      _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[talentIndex];
+  Talent getTalentForIndex(int talentIndex) => _talentsMap[_expansionId]!
+      .where((element) =>
+          element.classId == _charClassId && element.specId == _specId)
+      .toList()[talentIndex];
 
-  bool showTalentOnIndex(int index) => Constants.talentTreeLayouts[_expansionId][_charClassId][_specId][index] == 1;
+  bool showTalentOnIndex(int index) =>
+      Constants.talentTreeLayouts[_expansionId][_charClassId][_specId][index] ==
+      1;
 
-  void setCharClassesMap(Map<int, List<CharClass>> charClassesMap) => _charClassesMap = charClassesMap;
+  void setCharClassesMap(Map<int, List<CharClass>> charClassesMap) =>
+      _charClassesMap = charClassesMap;
 
   void setSpecsMap(Map<int, List<Spec>> specsMap) => _specsMap = specsMap;
 
-  void setTalentsMap(Map<int, List<Talent>> talentsMap) => _talentsMap = talentsMap;
+  void setTalentsMap(Map<int, List<Talent>> talentsMap) =>
+      _talentsMap = talentsMap;
 
   void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
 
-  void setDependenciesMap(Map<int, List<Dependency>> dependenciesMap) => _dependenciesMap = dependenciesMap;
+  void setDependenciesMap(Map<int, List<Dependency>> dependenciesMap) =>
+      _dependenciesMap = dependenciesMap;
 
-  String getCharClassIcon(int charClassId) => _charClassesMap[_expansionId]![charClassId].icon;
+  String getCharClassIcon(int charClassId) =>
+      _charClassesMap[_expansionId]![charClassId].icon;
 
   void setCharClassId(int charClassId) {
     _charClassId = charClassId;
@@ -122,13 +472,20 @@ class TCService {
   void mapData() {
     for (var expansion in _charClassesMap.keys) {
       for (var charClass in _charClassesMap[_expansionId]!) {
-        List<Spec> specs = _specsMap[expansion]!.where((element) => element.classId == charClass.id).toList();
+        List<Spec> specs = _specsMap[expansion]!
+            .where((element) => element.classId == charClass.id)
+            .toList();
 
         for (var spec in specs) {
-          List<Talent> talents = _talentsMap[expansion]!.where((element) => element.specId == spec.id && element.classId == charClass.id).toList();
+          List<Talent> talents = _talentsMap[expansion]!
+              .where((element) =>
+                  element.specId == spec.id && element.classId == charClass.id)
+              .toList();
 
           for (var talent in talents) {
-            List<Rank> ranks = _ranksMap[expansion]!.where((element) => element.talentId == talent.id).toList();
+            List<Rank> ranks = _ranksMap[expansion]!
+                .where((element) => element.talentId == talent.id)
+                .toList();
             talent.ranks = ranks;
           }
 
@@ -142,12 +499,15 @@ class TCService {
 
   bool talentEnablesAnother(int talentId) {
     var dependencies = _dependenciesMap[_expansionId];
-    var dependency = dependencies!.firstWhere((element) => element.requires == talentId, orElse: () => dependencies.first);
+    var dependency = dependencies!.firstWhere(
+        (element) => element.requires == talentId,
+        orElse: () => dependencies.first);
 
     return dependency.requires == talentId;
   }
 
-  int getTalentPoints(int talentTreePosition) => _talentTreeState[_expansionId][_specId][talentTreePosition];
+  int getTalentPoints(int talentTreePosition) =>
+      _talentTreeState[_expansionId][_specId][talentTreePosition];
 
   void resetTalentTreeState() {
     for (var i = 0; i < _talentTreeState[_expansionId][_specId].length; i++) {
@@ -161,5 +521,8 @@ class TCService {
     }
   }
 
-  String getSpecName(int specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).name;
+  String getSpecName(int specId) => _specsMap[_expansionId]!
+      .firstWhere(
+          (element) => element.classId == _charClassId && element.id == specId)
+      .name;
 }

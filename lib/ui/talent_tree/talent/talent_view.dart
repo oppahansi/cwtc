@@ -13,7 +13,9 @@ class TalentView extends StatelessWidget {
   final Talent talent;
   final int talentTreePosition;
 
-  const TalentView({required this.talentTreePosition, required this.talent, Key? key}) : super(key: key);
+  const TalentView(
+      {required this.talentTreePosition, required this.talent, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,17 @@ class TalentView extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage(model.getIcon(talent.icon)),
-                    colorFilter: model.isTalentDisabled(talent.id) ? const ColorFilter.mode(Colors.grey, BlendMode.saturation) : null,
+                    colorFilter: model.isTalentDisabled(talent.id)
+                        ? const ColorFilter.mode(
+                            Colors.grey, BlendMode.saturation)
+                        : null,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                   border: Border.all(
                     width: 3,
-                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
+                    color: model.isTalentDisabled(talent.id)
+                        ? Colors.grey
+                        : Colors.green.shade400,
                   ),
                 ),
               ),
@@ -53,19 +60,25 @@ class TalentView extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
                   border: Border.all(
                     width: 2,
-                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
+                    color: model.isTalentDisabled(talent.id)
+                        ? Colors.grey
+                        : Colors.green.shade400,
                   ),
                 ),
                 child: Text(
                   model.getTalentPoints(talentTreePosition).toString(),
-                  style: TextStyle(color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400),
+                  style: TextStyle(
+                      color: model.isTalentDisabled(talent.id)
+                          ? Colors.grey
+                          : Colors.green.shade400),
                 ),
               ),
             ),
             AlignPositioned(
               child: model.talentEnablesAnother(talent.id)
                   ? CustomPaint(
-                      size: Size(SizeConfig.safeBlockHorizontal! * 12, SizeConfig.safeBlockVertical! * 12),
+                      size: Size(SizeConfig.safeBlockHorizontal! * 12,
+                          SizeConfig.safeBlockVertical! * 12),
                       painter: ArrowMedium(model.isTalentDisabled(talent.id)),
                     )
                   : const SizedBox.shrink(),

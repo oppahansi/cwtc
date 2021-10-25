@@ -41,15 +41,18 @@ class ImageService {
 
   String getSpecIcon(String specIcon) => "assets/images/icons/$specIcon.png";
 
-  String getExpansionIcon(String expansion) => "assets/images/icons/${expansion}_icon.png";
+  String getExpansionIcon(String expansion) =>
+      "assets/images/icons/${expansion}_icon.png";
 
   String get getRngBgImageFilePath {
     return _backgroundImages[_random.nextInt(_backgroundImages.length)];
   }
 
-  String getSpecBg(String charClass, int specId) => "assets/images/bgs/$charClass$specId.png";
+  String getSpecBg(String charClass, int specId) =>
+      "assets/images/bgs/$charClass$specId.png";
 
   String getTalentIcon(String icon) => "assets/images/icons/$icon.png";
 
-  String getCharClassIcon(String charClassIcon) => "assets/images/icons/$charClassIcon.png";
+  String getCharClassIcon(String charClassIcon) =>
+      "assets/images/icons/$charClassIcon.png";
 }

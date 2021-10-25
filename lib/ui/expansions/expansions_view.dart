@@ -31,9 +31,15 @@ class _ExpansionsViewState extends State<ExpansionsView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ExpansionsButtonView(expansionId: Expansions.vanilla.index, expansionString: Expansions.vanilla.toShortString()),
-                    ExpansionsButtonView(expansionId: Expansions.tbc.index, expansionString: Expansions.tbc.toShortString()),
-                    ExpansionsButtonView(expansionId: Expansions.wotlk.index, expansionString: Expansions.wotlk.toShortString()),
+                    ExpansionsButtonView(
+                        expansionId: Expansions.vanilla.index,
+                        expansionString: Expansions.vanilla.toShortString()),
+                    ExpansionsButtonView(
+                        expansionId: Expansions.tbc.index,
+                        expansionString: Expansions.tbc.toShortString()),
+                    ExpansionsButtonView(
+                        expansionId: Expansions.wotlk.index,
+                        expansionString: Expansions.wotlk.toShortString()),
                   ],
                   // TODO add load button for loading saved talent build
                   // TODO add settings button to configure app

@@ -7,7 +7,8 @@ import '../char_class_viewmodel.dart';
 class CharClassesButtonView extends StatelessWidget {
   final int charClassId;
 
-  const CharClassesButtonView({required this.charClassId, Key? key}) : super(key: key);
+  const CharClassesButtonView({required this.charClassId, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,8 @@ class CharClassesButtonView extends StatelessWidget {
             },
             child: SizedBox(
               height: SizeConfig.safeBlockHorizontal! * 20,
-              child: Image.asset(model.getCharClassIconForId(charClassId), fit: BoxFit.cover),
+              child: Image.asset(model.getCharClassIconForId(charClassId),
+                  fit: BoxFit.cover),
             ),
             style: ElevatedButton.styleFrom(
               primary: Colors.transparent,

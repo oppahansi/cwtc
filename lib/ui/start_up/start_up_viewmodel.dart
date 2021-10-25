@@ -32,11 +32,14 @@ class StartUpViewModel extends FutureViewModel {
 
     for (var expansion in Expansions.values) {
       var expansionString = expansion.toShortString();
-      List<CharClass> charClasses = await _dbService.getCharClasses(expansionString);
+      List<CharClass> charClasses =
+          await _dbService.getCharClasses(expansionString);
       List<Spec> specs = await _dbService.getSpecsByExpansion(expansionString);
-      List<Talent> talents = await _dbService.getTalentsByExpansion(expansionString);
+      List<Talent> talents =
+          await _dbService.getTalentsByExpansion(expansionString);
       List<Rank> ranks = await _dbService.getRanksByExpansion(expansionString);
-      List<Dependency> dependencies = await _dbService.getDependenciesByExpansion(expansionString);
+      List<Dependency> dependencies =
+          await _dbService.getDependenciesByExpansion(expansionString);
 
       charClassesMap.putIfAbsent(expansion.index, () => charClasses);
       specsMap.putIfAbsent(expansion.index, () => specs);

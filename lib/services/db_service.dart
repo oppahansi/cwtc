@@ -34,8 +34,10 @@ class DBService {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
 
-      ByteData data = await rootBundle.load(join("assets/data", "$expansion.db"));
-      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      ByteData data =
+          await rootBundle.load(join("assets/data", "$expansion.db"));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       await File(path).writeAsBytes(bytes, flush: true);
     }
@@ -71,7 +73,8 @@ class DBService {
 
   Future<List<Spec>> getSpecs(String expansion, int charClassId) async {
     var db = await getDb(expansion);
-    var dbResult = await db!.query("specs", where: "classId = ?", whereArgs: [charClassId]);
+    var dbResult = await db!
+        .query("specs", where: "classId = ?", whereArgs: [charClassId]);
     List<Spec> specs = List.empty(growable: true);
 
     for (var rsultRow in dbResult) {
@@ -95,9 +98,13 @@ class DBService {
     return talents;
   }
 
-  Future<List<Talent>> getTalents(String expansion, int charClassId, int specId) async {
+  Future<List<Talent>> getTalents(
+      String expansion, int charClassId, int specId) async {
     var db = await getDb(expansion);
-    var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId], orderBy: "rowid");
+    var dbResult = await db!.query("talents",
+        where: "classId = ? AND specId = ?",
+        whereArgs: [charClassId, specId],
+        orderBy: "rowid");
     List<Talent> talents = List.empty(growable: true);
 
     for (var rsultRow in dbResult) {
@@ -123,7 +130,8 @@ class DBService {
 
   Future<List<Rank>> getRanks(String expansion, List<int> talentIds) async {
     var db = await getDb(expansion);
-    var dbResult = await db!.query("ranks", where: "talentId IN (${talentIds.join(', ')})");
+    var dbResult = await db!
+        .query("ranks", where: "talentId IN (${talentIds.join(', ')})");
     List<Rank> ranks = List.empty(growable: true);
 
     for (var rsultRow in dbResult) {
