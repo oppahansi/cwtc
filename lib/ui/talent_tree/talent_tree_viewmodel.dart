@@ -3,15 +3,15 @@ import 'package:stacked/stacked.dart';
 
 import '../../app/app.locator.dart';
 import '../../data_models/talent.dart';
+import '../../extensions/extensions.dart';
 import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
 import 'talent/talent_view.dart';
 
 class TalentTreeViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
-  final _tcService = locator<TCService>();
-
   final List<Talent> _talents = List.empty(growable: true);
+  final _tcService = locator<TCService>();
 
   String getSpecIcon(int specId) => _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
 
@@ -57,16 +57,4 @@ class TalentTreeViewModel extends BaseViewModel {
   void setSpecId(int specId) => _tcService.setSpecId(specId);
 
   Color get getExpansionColor => _tcService.getExpansionColor;
-}
-
-extension ColorExtension on String {
-  toColor() {
-    var hexColor = replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
-    }
-    if (hexColor.length == 8) {
-      return Color(int.parse("0x$hexColor"));
-    }
-  }
 }

@@ -4,14 +4,14 @@ import 'package:stacked/stacked.dart';
 import '../talent_tree_viewmodel.dart';
 
 class TalentSpecView extends StatelessWidget {
-  final int specId;
-  final double talentImageWidth;
-
   const TalentSpecView({
     required this.specId,
     required this.talentImageWidth,
     Key? key,
   }) : super(key: key);
+
+  final int specId;
+  final double talentImageWidth;
 
   @override
   Widget build(BuildContext context) {

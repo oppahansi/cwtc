@@ -1,15 +1,10 @@
 class Rank {
-  final int talentId;
-  final int rank;
-  final String desc;
-
   Rank({
     required this.talentId,
     required this.rank,
     required this.desc,
   });
 
-  static final columns = ["talentId", "rank", "desc"];
   factory Rank.fromMap(Map<dynamic, dynamic> data) {
     return Rank(
       talentId: data["talentId"],
@@ -17,5 +12,11 @@ class Rank {
       desc: data["desc"],
     );
   }
+
+  static final columns = ["talentId", "rank", "desc"];
+
+  final String desc;
+  final int rank;
+  final int talentId;
 }
 //

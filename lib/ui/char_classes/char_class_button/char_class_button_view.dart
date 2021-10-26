@@ -5,9 +5,9 @@ import '../../../app/size_config.dart';
 import '../char_class_viewmodel.dart';
 
 class CharClassesButtonView extends StatelessWidget {
-  final int charClassId;
-
   const CharClassesButtonView({required this.charClassId, Key? key}) : super(key: key);
+
+  final int charClassId;
 
   @override
   Widget build(BuildContext context) {

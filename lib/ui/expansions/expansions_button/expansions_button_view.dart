@@ -4,14 +4,14 @@ import 'package:stacked/stacked.dart';
 import '../exapnsions_viewmodel.dart';
 
 class ExpansionsButtonView extends StatelessWidget {
-  final int expansionId;
-  final String expansionString;
-
   const ExpansionsButtonView({
     required this.expansionId,
     required this.expansionString,
     Key? key,
   }) : super(key: key);
+
+  final int expansionId;
+  final String expansionString;
 
   @override
   Widget build(BuildContext context) {

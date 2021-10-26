@@ -9,6 +9,18 @@ import '../data_models/spec.dart';
 import '../data_models/talent.dart';
 
 class TCService {
+  int _charClassId = 0;
+  Map<int, List<CharClass>> _charClassesMap = {};
+  Map<int, List<Dependency>> _dependenciesMap = {};
+  int _expansionId = 0;
+  int _pointsLeft = 0;
+  Map<int, List<Rank>> _ranksMap = {};
+  int _requiredLevel = 10;
+  int _specId = 0;
+  Map<int, List<Spec>> _specsMap = {};
+  int _spentPoints = 0;
+  WowTalentCalculator _talentCalculator = WowTalentCalculator();
+  int _talentIndex = 0;
   final List<List<List<int>>> _talentTreeState = [
     [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -162,21 +174,7 @@ class TCService {
     ]
   ];
 
-  Map<int, List<CharClass>> _charClassesMap = {};
-  Map<int, List<Spec>> _specsMap = {};
   Map<int, List<Talent>> _talentsMap = {};
-  Map<int, List<Rank>> _ranksMap = {};
-  Map<int, List<Dependency>> _dependenciesMap = {};
-
-  int _expansionId = 0;
-  int _charClassId = 0;
-  int _specId = 0;
-  int _pointsLeft = 0;
-  int _requiredLevel = 10;
-  int _spentPoints = 0;
-  int _talentIndex = 0;
-
-  WowTalentCalculator _talentCalculator = WowTalentCalculator();
 
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 

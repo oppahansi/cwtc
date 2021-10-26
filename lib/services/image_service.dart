@@ -1,7 +1,6 @@
 import 'dart:math';
 
 class ImageService {
-  static final Random _random = Random();
   static const _backgroundImages = [
     "assets/images/bgs/deathknight0.png",
     "assets/images/bgs/deathknight1.png",
@@ -34,6 +33,8 @@ class ImageService {
     "assets/images/bgs/warrior1.png",
     "assets/images/bgs/warrior2.png",
   ];
+
+  static final Random _random = Random();
 
   String get getAppIcon => "assets/images/icons/app_icon.png";
 

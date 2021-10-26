@@ -1,12 +1,6 @@
 import 'spec.dart';
 
 class CharClass {
-  final int id;
-  final String name;
-  final String color;
-  final String icon;
-  List<Spec> specs = List.empty(growable: true);
-
   CharClass({
     required this.id,
     required this.name,
@@ -14,7 +8,6 @@ class CharClass {
     required this.icon,
   });
 
-  static final columns = ["id", "name", "color", "icon"];
   factory CharClass.fromMap(Map<dynamic, dynamic> data) {
     return CharClass(
       id: data["id"],
@@ -23,4 +16,12 @@ class CharClass {
       icon: data["icon"],
     );
   }
+
+  static final columns = ["id", "name", "color", "icon"];
+
+  final String color;
+  final String icon;
+  final int id;
+  final String name;
+  List<Spec> specs = List.empty(growable: true);
 }

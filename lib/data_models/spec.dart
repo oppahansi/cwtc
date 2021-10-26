@@ -1,12 +1,6 @@
 import 'talent.dart';
 
 class Spec {
-  final int classId;
-  final int id;
-  final String name;
-  final String icon;
-  List<Talent> talents = List.empty();
-
   Spec({
     required this.classId,
     required this.id,
@@ -14,7 +8,6 @@ class Spec {
     required this.icon,
   });
 
-  static final columns = ["classId", "id", "name", "icon"];
   factory Spec.fromMap(Map<dynamic, dynamic> data) {
     return Spec(
       classId: data["classId"],
@@ -23,4 +16,12 @@ class Spec {
       icon: data["icon"],
     );
   }
+
+  static final columns = ["classId", "id", "name", "icon"];
+
+  final int classId;
+  final String icon;
+  final int id;
+  final String name;
+  List<Talent> talents = List.empty();
 }

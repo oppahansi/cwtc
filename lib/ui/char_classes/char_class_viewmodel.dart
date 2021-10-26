@@ -8,8 +8,8 @@ import '../../services/image_service.dart';
 import '../../services/tc_service.dart';
 
 class CharClassViewModel extends BaseViewModel {
-  final _tcService = locator<TCService>();
   final _imageService = locator<ImageService>();
+  final _tcService = locator<TCService>();
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // Shapemaker resource https://i.imgur.com/hT9q9RR.png
 
 class ArrowShortRight extends CustomPainter {
-  final bool disabled;
-
   ArrowShortRight(this.disabled);
+
+  final bool disabled;
 
   @override
   void paint(Canvas canvas, Size size) {

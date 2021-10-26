@@ -1,7 +1,6 @@
-import 'package:classic_wow_talent_calculator_stacked/extensions/extensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:wow_talent_calculator/wow_talent_calculator.dart' as tc;
+import 'package:wow_talent_calculator/wow_talent_calculator.dart';
 
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
@@ -10,15 +9,23 @@ import '../../data_models/dependency.dart';
 import '../../data_models/rank.dart';
 import '../../data_models/spec.dart';
 import '../../data_models/talent.dart';
+import '../../extensions/extensions.dart';
 import '../../services/image_service.dart';
 import '../../services/db_service.dart';
 import '../../services/tc_service.dart';
 
 class StartUpViewModel extends FutureViewModel {
   final _dbService = locator<DBService>();
-  final _tcService = locator<TCService>();
   final _imageService = locator<ImageService>();
   final _navigationService = locator<NavigationService>();
+  final _tcService = locator<TCService>();
+
+  @override
+  Future futureToRun() async {
+    //await Future.delayed(const Duration(seconds: 3));
+    await init();
+    _navigationService.replaceWith(Routes.expansionsView);
+  }
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 
@@ -31,7 +38,7 @@ class StartUpViewModel extends FutureViewModel {
     Map<int, List<Rank>> ranksMap = {};
     Map<int, List<Dependency>> dependenciesMap = {};
 
-    for (var expansion in tc.Expansions.values) {
+    for (var expansion in Expansions.values) {
       var expansionString = expansion.toShortString();
       List<CharClass> charClasses = await _dbService.getCharClasses(expansionString);
       List<Spec> specs = await _dbService.getSpecsByExpansion(expansionString);
@@ -53,12 +60,5 @@ class StartUpViewModel extends FutureViewModel {
     _tcService.setDependenciesMap(dependenciesMap);
 
     _tcService.mapData();
-  }
-
-  @override
-  Future futureToRun() async {
-    //await Future.delayed(const Duration(seconds: 3));
-    await init();
-    _navigationService.replaceWith(Routes.expansionsView);
   }
 }

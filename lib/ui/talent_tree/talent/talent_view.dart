@@ -4,16 +4,14 @@ import 'package:stacked/stacked.dart';
 
 import '../../../app/size_config.dart';
 import '../../../constants/arrow_medium.dart';
-import '../../../constants/arrow_short.dart';
-import '../../../constants/arrow_short_right.dart';
 import '../../../data_models/talent.dart';
 import '../talent_tree_viewmodel.dart';
 
 class TalentView extends StatelessWidget {
+  const TalentView({required this.talentTreePosition, required this.talent, Key? key}) : super(key: key);
+
   final Talent talent;
   final int talentTreePosition;
-
-  const TalentView({required this.talentTreePosition, required this.talent, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -13,8 +13,20 @@ class StartUpView extends StatefulWidget {
 }
 
 class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  Animatable<Color> bgColor = RainbowColorTween([
+    Colors.orange,
+    Colors.green,
+    Colors.blue,
+  ]);
+
   late Animation<Color> _colorAnim;
+  late AnimationController _controller;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -26,18 +38,6 @@ class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStat
       ..forward()
       ..repeat();
     _colorAnim = bgColor.animate(_controller);
-  }
-
-  Animatable<Color> bgColor = RainbowColorTween([
-    Colors.orange,
-    Colors.green,
-    Colors.blue,
-  ]);
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
