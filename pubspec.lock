@@ -637,6 +637,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.9"
+  wow_talent_calculator:
+    dependency: "direct dev"
+    description:
+      path: "C:/dev/workspace/dart/wow_talent_calculator"
+      relative: false
+    source: path
+    version: "1.0.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -652,5 +659,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.14.4 <3.0.0"
   flutter: ">=2.5.0"
