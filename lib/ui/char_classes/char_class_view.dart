@@ -55,9 +55,7 @@ class CharClassView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    model.getExpansionId == 2
-                        ? const CharClassesButtonView(charClassId: 9)
-                        : const SizedBox.shrink(),
+                    model.getExpansionId == 2 ? const CharClassesButtonView(charClassId: 9) : const SizedBox.shrink(),
                   ],
                 ),
               ],

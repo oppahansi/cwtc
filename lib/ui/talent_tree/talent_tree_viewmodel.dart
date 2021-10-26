@@ -13,8 +13,7 @@ class TalentTreeViewModel extends BaseViewModel {
 
   final List<Talent> _talents = List.empty(growable: true);
 
-  String getSpecIcon(int specId) =>
-      _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
+  String getSpecIcon(int specId) => _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
 
   String getIcon(String icon) => _imageService.getTalentIcon(icon);
 
@@ -32,8 +31,7 @@ class TalentTreeViewModel extends BaseViewModel {
 
   Color get getClassColor => _tcService.getClassColor.toColor();
 
-  String get getBGImage => _imageService.getSpecBg(
-      _tcService.getCharClassName.toLowerCase(), _tcService.getSpecId);
+  String get getBGImage => _imageService.getSpecBg(_tcService.getCharClassName.toLowerCase(), _tcService.getSpecId);
 
   int get getTreeLength => _tcService.getTreeLength;
 
@@ -41,26 +39,21 @@ class TalentTreeViewModel extends BaseViewModel {
 
   String get getEmptyTalentIcon => _imageService.getEmptyTalentIcon;
 
-  bool showTalentOnTalentTreePosition(int index) =>
-      _tcService.showTalentOnIndex(index);
+  bool showTalentOnTalentTreePosition(int index) => _tcService.showTalentOnIndex(index);
 
-  Talent getCurrentTalent(int talentIndex) =>
-      _tcService.getTalentForIndex(talentIndex);
+  Talent getCurrentTalent(int talentIndex) => _tcService.getTalentForIndex(talentIndex);
 
-  bool talentEnablesAnother(int talentId) =>
-      _tcService.talentEnablesAnother(talentId);
+  bool talentEnablesAnother(int talentId) => _tcService.talentEnablesAnother(talentId);
 
   Widget getTalentForTreePosition(int talentTreePosition, double length) {
-    if (!showTalentOnTalentTreePosition(talentTreePosition))
-      return SizedBox(height: length, width: length);
+    if (!showTalentOnTalentTreePosition(talentTreePosition)) return SizedBox(height: length, width: length);
 
     Talent talent = _tcService.getTalent();
 
     return TalentView(talentTreePosition: talentTreePosition, talent: talent);
   }
 
-  int getTalentPoints(int talentTreePosition) =>
-      _tcService.getTalentPoints(talentTreePosition);
+  int getTalentPoints(int talentTreePosition) => _tcService.getTalentPoints(talentTreePosition);
 
   String getSpecName(int specId) => _tcService.getSpecName(specId);
 

@@ -12,8 +12,7 @@ class StartUpView extends StatefulWidget {
   State<StartUpView> createState() => _StartUpViewState();
 }
 
-class _StartUpViewState extends State<StartUpView>
-    with SingleTickerProviderStateMixin {
+class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color> _colorAnim;
 

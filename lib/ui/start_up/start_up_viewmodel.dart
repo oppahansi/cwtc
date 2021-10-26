@@ -1,5 +1,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:wow_talent_calculator/wow_talent_calculator.dart' as tc;
 
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
@@ -30,16 +31,13 @@ class StartUpViewModel extends FutureViewModel {
     Map<int, List<Rank>> ranksMap = {};
     Map<int, List<Dependency>> dependenciesMap = {};
 
-    for (var expansion in Expansions.values) {
+    for (var expansion in tc.Expansions.values) {
       var expansionString = expansion.toShortString();
-      List<CharClass> charClasses =
-          await _dbService.getCharClasses(expansionString);
+      List<CharClass> charClasses = await _dbService.getCharClasses(expansionString);
       List<Spec> specs = await _dbService.getSpecsByExpansion(expansionString);
-      List<Talent> talents =
-          await _dbService.getTalentsByExpansion(expansionString);
+      List<Talent> talents = await _dbService.getTalentsByExpansion(expansionString);
       List<Rank> ranks = await _dbService.getRanksByExpansion(expansionString);
-      List<Dependency> dependencies =
-          await _dbService.getDependenciesByExpansion(expansionString);
+      List<Dependency> dependencies = await _dbService.getDependenciesByExpansion(expansionString);
 
       charClassesMap.putIfAbsent(expansion.index, () => charClasses);
       specsMap.putIfAbsent(expansion.index, () => specs);

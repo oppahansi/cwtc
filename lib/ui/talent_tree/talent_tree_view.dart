@@ -31,8 +31,7 @@ class TalentTreeView extends StatelessWidget {
                     child: TabBar(
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorColor: Colors.black,
-                      indicatorPadding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 5),
+                      indicatorPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                       tabs: [
                         Tab(
                           child: Container(
@@ -43,8 +42,7 @@ class TalentTreeView extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 image: AssetImage(model.getSpecIcon(0)),
                               ),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(talentImageWidth / 2)),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
                               border: Border.all(
                                 width: 3,
                                 color: Colors.black,
@@ -61,8 +59,7 @@ class TalentTreeView extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 image: AssetImage(model.getSpecIcon(1)),
                               ),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(talentImageWidth / 2)),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
                               border: Border.all(
                                 width: 3,
                                 color: Colors.black,
@@ -79,8 +76,7 @@ class TalentTreeView extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 image: AssetImage(model.getSpecIcon(2)),
                               ),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(talentImageWidth / 2)),
+                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
                               border: Border.all(
                                 width: 3,
                                 color: Colors.black,

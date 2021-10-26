@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wow_talent_calculator/wow_talent_calculator.dart' as tc;
 
 import '../../app/size_config.dart';
 import '../../constants/constants.dart';
@@ -32,14 +33,12 @@ class _ExpansionsViewState extends State<ExpansionsView> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ExpansionsButtonView(
-                        expansionId: Expansions.vanilla.index,
-                        expansionString: Expansions.vanilla.toShortString()),
+                        expansionId: tc.Expansions.vanilla.index,
+                        expansionString: tc.Expansions.vanilla.toShortString()),
                     ExpansionsButtonView(
-                        expansionId: Expansions.tbc.index,
-                        expansionString: Expansions.tbc.toShortString()),
+                        expansionId: tc.Expansions.tbc.index, expansionString: tc.Expansions.tbc.toShortString()),
                     ExpansionsButtonView(
-                        expansionId: Expansions.wotlk.index,
-                        expansionString: Expansions.wotlk.toShortString()),
+                        expansionId: tc.Expansions.wotlk.index, expansionString: tc.Expansions.wotlk.toShortString()),
                   ],
                   // TODO add load button for loading saved talent build
                   // TODO add settings button to configure app

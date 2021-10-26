@@ -12,11 +12,9 @@ class ExpansionsViewModel extends BaseViewModel {
 
   String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
 
-  String getExpansionIcon(String expansion) =>
-      _imageService.getExpansionIcon(expansion);
+  String getExpansionIcon(String expansion) => _imageService.getExpansionIcon(expansion);
 
   void setExpansion(int expansion) => _tcService.setExpansionId(expansion);
 
-  void navigateToCharClassView() =>
-      locator<NavigationService>().navigateTo(Routes.charClassView);
+  void navigateToCharClassView() => locator<NavigationService>().navigateTo(Routes.charClassView);
 }
