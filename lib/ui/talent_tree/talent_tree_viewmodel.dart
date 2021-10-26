@@ -19,11 +19,8 @@ class TalentTreeViewModel extends BaseViewModel {
 
   void addTalent(Talent talent) => _talents.add(talent);
 
+  // TODO correct implementation needed
   bool isTalentDisabled(int talentId) {
-    var talent = _talents.firstWhere((element) => element.id == talentId);
-    if (talent.row == 0 && talent.requires == 0) return false;
-    if (_tcService.getSpentPoints >= talent.row * 5) return false;
-
     return true;
   }
 

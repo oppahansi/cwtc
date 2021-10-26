@@ -1,24 +1,5 @@
 import 'package:flutter/material.dart';
 
-enum ArrowTypes {
-  short,
-  shortRight,
-  shortLeft,
-  medium,
-  mediumRight,
-  mediumLeft,
-  long,
-  longRight,
-  longLeft,
-  longest,
-}
-
-extension ParseToString on Enum {
-  String toShortString() {
-    return toString().split('.').last;
-  }
-}
-
 class Constants {
   static const List<String> expansionsFull = ["Vanilla", "The Burning Crusade", "Wrath of the Lich King"];
   static const List<String> expansionsShort = ["Vanilla", "Tbc", "Wotlk"];

@@ -1,10 +1,10 @@
+import 'package:classic_wow_talent_calculator_stacked/extensions/extensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wow_talent_calculator/wow_talent_calculator.dart' as tc;
 
 import '../../app/app.locator.dart';
 import '../../app/app.router.dart';
-import '../../constants/constants.dart';
 import '../../data_models/char_class.dart';
 import '../../data_models/dependency.dart';
 import '../../data_models/rank.dart';

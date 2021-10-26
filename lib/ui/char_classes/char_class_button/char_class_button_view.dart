@@ -18,6 +18,7 @@ class CharClassesButtonView extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               model.setCharClassId(charClassId);
+              model.initTalentCalculator();
               model.navigateToTalentTreeView();
             },
             child: SizedBox(

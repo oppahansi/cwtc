@@ -7,7 +7,7 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "29.0.0"
+    version: "30.0.0"
   align_positioned:
     dependency: "direct dev"
     description:
@@ -21,7 +21,7 @@ packages:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.0"
+    version: "2.7.0"
   args:
     dependency: transitive
     description:
@@ -295,7 +295,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.3.0"
   lints:
     dependency: transitive
     description:
@@ -337,7 +337,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   nested:
     dependency: transitive
     description:
@@ -421,7 +421,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.3"
+    version: "4.2.4"
   provider:
     dependency: transitive
     description:
@@ -636,11 +636,11 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.9"
+    version: "2.2.10"
   wow_talent_calculator:
     dependency: "direct dev"
     description:
-      path: "C:/dev/workspace/dart/wow_talent_calculator"
+      path: "C:/dev/workspace/dart/wow_talent_calculator/"
       relative: false
     source: path
     version: "1.0.0"

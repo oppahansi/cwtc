@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wow_talent_calculator/wow_talent_calculator.dart';
 
 import '../constants/constants.dart';
 import '../data_models/char_class.dart';
@@ -175,6 +176,8 @@ class TCService {
   int _spentPoints = 0;
   int _talentIndex = 0;
 
+  WowTalentCalculator _talentCalculator = WowTalentCalculator();
+
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
   Color get getExpansionColor => Constants.expansionColors[_expansionId];
@@ -210,22 +213,6 @@ class TCService {
   }
 
   int get getSpecId => _specId;
-
-  void decrementPointsLeft() => _pointsLeft--;
-
-  void incrementPointsLeft() => _pointsLeft++;
-
-  int get getPointsLeft => _pointsLeft;
-
-  void incrementSpentPoints() => _spentPoints++;
-
-  int get getSpentPoints => _spentPoints;
-
-  void incrementRequiredLevel() => _requiredLevel++;
-
-  void decrementRequiredLevel() => _requiredLevel--;
-
-  int get getRequiredLevel => _requiredLevel;
 
   Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
 
@@ -305,4 +292,7 @@ class TCService {
 
   String getSpecName(int specId) =>
       _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).name;
+
+  void initTalentCalculator() =>
+      _talentCalculator = WowTalentCalculator(expansionId: _expansionId, charClassId: _charClassId);
 }
