@@ -44,9 +44,7 @@ class ImageService {
 
   String getExpansionIcon(String expansion) => "assets/images/icons/${expansion}_icon.png";
 
-  String get getRngBgImageFilePath {
-    return _backgroundImages[_random.nextInt(_backgroundImages.length)];
-  }
+  String get getRngBgImageFilePath => _backgroundImages[_random.nextInt(_backgroundImages.length)];
 
   String getSpecBg(String charClass, int specId) => "assets/images/bgs/$charClass$specId.png";
 
