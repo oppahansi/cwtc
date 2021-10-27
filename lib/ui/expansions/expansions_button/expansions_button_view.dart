@@ -15,7 +15,7 @@ class ExpansionsButtonView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ExpansionsViewModel>.reactive(
+    return ViewModelBuilder<ExpansionsViewModel>.nonReactive(
       builder: (context, model, child) => Expanded(
         child: Padding(
           padding: const EdgeInsets.all(10.0),

@@ -1,9 +1,9 @@
 import 'package:align_positioned/align_positioned.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wow_talent_calculator/wow_talent_calculator.dart';
 
 import '../../../app/size_config.dart';
-import '../../../constants/arrow_medium.dart';
 import '../../../data_models/talent.dart';
 import '../talent_tree_viewmodel.dart';
 
@@ -19,60 +19,29 @@ class TalentView extends StatelessWidget {
     return ViewModelBuilder<TalentTreeViewModel>.reactive(
       builder: (context, model, child) {
         model.addTalent(talent);
-        return Stack(
-          clipBehavior: Clip.none,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: Container(
-                height: SizeConfig.safeBlockVertical! * 20,
-                width: SizeConfig.safeBlockHorizontal! * 20,
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(model.getIcon(talent.icon)),
-                    colorFilter: model.isTalentDisabled(talent.id)
-                        ? const ColorFilter.mode(Colors.grey, BlendMode.saturation)
-                        : null,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  border: Border.all(
-                    width: 3,
-                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
-                  ),
+        return Positioned(
+          top: talent.row * SizeConfig.cellSize!,
+          left: talent.column * SizeConfig.cellSize!,
+          child: TextButton(
+            onPressed: () {},
+            child: Container(
+              width: SizeConfig.cellSize! * .75,
+              height: SizeConfig.cellSize! * .75,
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(model.getIcon(talent.icon)),
+                  colorFilter: model.isTalentDisabled(talent.id) ? const ColorFilter.mode(Colors.grey, BlendMode.saturation) : null,
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                border: Border.all(
+                  width: 3,
+                  color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
                 ),
               ),
             ),
-            AlignPositioned(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  border: Border.all(
-                    width: 2,
-                    color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400,
-                  ),
-                ),
-                child: Text(
-                  model.getTalentPoints(talentTreePosition).toString(),
-                  style: TextStyle(color: model.isTalentDisabled(talent.id) ? Colors.grey : Colors.green.shade400),
-                ),
-              ),
-            ),
-            AlignPositioned(
-              child: model.talentEnablesAnother(talent.id)
-                  ? CustomPaint(
-                      size: Size(SizeConfig.safeBlockHorizontal! * 12, SizeConfig.safeBlockVertical! * 12),
-                      painter: ArrowMedium(model.isTalentDisabled(talent.id)),
-                    )
-                  : const SizedBox.shrink(),
-              alignment: Alignment.bottomCenter,
-              moveByChildHeight: 1,
-            )
-          ],
+          ),
         );
       },
       viewModelBuilder: () => TalentTreeViewModel(),

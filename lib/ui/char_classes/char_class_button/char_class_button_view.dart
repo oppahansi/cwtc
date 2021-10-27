@@ -5,13 +5,16 @@ import '../../../app/size_config.dart';
 import '../char_class_viewmodel.dart';
 
 class CharClassesButtonView extends StatelessWidget {
-  const CharClassesButtonView({required this.charClassId, Key? key}) : super(key: key);
+  const CharClassesButtonView({
+    required this.charClassId,
+    Key? key,
+  }) : super(key: key);
 
   final int charClassId;
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CharClassViewModel>.reactive(
+    return ViewModelBuilder<CharClassViewModel>.nonReactive(
       builder: (context, model, child) => Expanded(
         child: Padding(
           padding: const EdgeInsets.all(10.0),

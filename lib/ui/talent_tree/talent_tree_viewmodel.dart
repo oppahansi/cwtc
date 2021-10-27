@@ -13,6 +13,10 @@ class TalentTreeViewModel extends BaseViewModel {
   final List<Talent> _talents = List.empty(growable: true);
   final _tcService = locator<TCService>();
 
+  int get getRowsCount => _tcService.getMaxTalentTreeRows;
+
+  get getMaxTalentTreeRows => _tcService.getMaxTalentTreeRows;
+
   String getSpecIcon(int specId) => _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
 
   String getIcon(String icon) => _imageService.getTalentIcon(icon);

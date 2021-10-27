@@ -12,7 +12,7 @@ class CharClassView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return ViewModelBuilder<CharClassViewModel>.reactive(
+    return ViewModelBuilder<CharClassViewModel>.nonReactive(
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
           appBar: AppBar(

@@ -1,3 +1,5 @@
+import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
+import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -15,27 +17,43 @@ class TalentSpecView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ViewModelBuilder<TalentTreeViewModel>.reactive(
       builder: (context, model, child) {
         model.setSpecId(specId);
 
-        return Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(model.getBGImage),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: GridView.count(
-            crossAxisCount: 4,
-            crossAxisSpacing: 0.0,
-            children: [
-              ...List.generate(model.getTreeLength, (index) {
-                return model.getTalentForTreePosition(index, talentImageWidth);
-              }),
-            ],
-          ),
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: SizeConfig.cellSize! * model.getMaxTalentTreeRows.toDouble() + 40,
+                ),
+                child: Container(
+                  decoration: Constants.getBgDecoration(model.getBGImage),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Stack(
+                    children: [
+                      ...List.generate(model.getTreeLength, (index) {
+                        return model.getTalentForTreePosition(index, talentImageWidth);
+                      })
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         );
+        // return Container(
+        //   decoration: Constants.getBgDecoration(model.getBGImage),
+        //   child: Stack(
+        //     children: [
+        //       ...List.generate(model.getTreeLength, (index) {
+        //         return model.getTalentForTreePosition(index, talentImageWidth);
+        //       })
+        //     ],
+        //   ),
+        // );
       },
       viewModelBuilder: () => TalentTreeViewModel(),
     );
