@@ -28,7 +28,7 @@ class TalentView extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: AssetImage(model.getIcon(talent.icon)),
+                  image: AssetImage(model.getTalentIcon(talent.icon)),
                   colorFilter: model.isTalentDisabled(talent.id) ? const ColorFilter.mode(Colors.grey, BlendMode.saturation) : null,
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(8)),

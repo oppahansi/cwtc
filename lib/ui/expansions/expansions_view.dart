@@ -5,8 +5,8 @@ import 'package:wow_talent_calculator/wow_talent_calculator.dart';
 import '../../constants/constants.dart';
 import '../../extensions/extensions.dart';
 import '../widgets/app_title.dart';
-import 'expansions_button/expansions_button_view.dart';
 import 'exapnsions_viewmodel.dart';
+import 'expansions_button/expansions_button_view.dart';
 
 class ExpansionsView extends StatelessWidget {
   const ExpansionsView({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class ExpansionsView extends StatelessWidget {
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
           body: Container(
-            decoration: Constants.getBgDecoration(model.getRngBgImageFilePath),
+            decoration: Constants.getBgDecoration(model.getRngBgImage),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -10,7 +10,7 @@ class ExpansionsViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
 
-  String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
+  String get getRngBgImage => _imageService.getRngBgImage;
 
   String getExpansionIcon(String expansion) => _imageService.getExpansionIcon(expansion);
 

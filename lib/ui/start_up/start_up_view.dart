@@ -50,7 +50,7 @@ class _StartUpViewState extends State<StartUpView> with SingleTickerProviderStat
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(model.getRngBgImageFilePath),
+                image: AssetImage(model.getRngBgImage),
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,8 +1,8 @@
-import 'package:classic_wow_talent_calculator_stacked/app/size_config.dart';
-import 'package:classic_wow_talent_calculator_stacked/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../app/size_config.dart';
+import '../../../constants/constants.dart';
 import '../talent_tree_viewmodel.dart';
 
 class TalentSpecView extends StatelessWidget {
@@ -30,7 +30,7 @@ class TalentSpecView extends StatelessWidget {
                   minHeight: SizeConfig.cellSize! * model.getMaxTalentTreeRows.toDouble() + 40,
                 ),
                 child: Container(
-                  decoration: Constants.getBgDecoration(model.getBGImage),
+                  decoration: Constants.getBgDecoration(model.getSpecBGImage),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Stack(
                     children: [

@@ -20,12 +20,13 @@ class CharClassesButtonView extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: TextButton(
             onPressed: () {
+              model.setCharClassId(charClassId);
               model.initTalentCalculator();
               model.navigateToTalentTreeView();
             },
             child: SizedBox(
               height: SizeConfig.safeBlockHorizontal! * 20,
-              child: Image.asset(model.getCharClassIconForId(charClassId), fit: BoxFit.cover),
+              child: Image.asset(model.getCharClassIcon(charClassId), fit: BoxFit.cover),
             ),
             style: ElevatedButton.styleFrom(
               primary: Colors.transparent,

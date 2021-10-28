@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class SizeConfig {
-  static const int NUM_ROWS = 6;
-  static const int NUM_COLS = 4;
+  static const int maxColumns = 4;
 
   static const double kTalentScreenTwoPadding = 40.0;
 
@@ -73,6 +72,6 @@ class SizeConfig {
     safeAreaScreenHeight = screenHeight! - _safeAreaVertical!;
 
     /// the width of cell of the [DetailScreen], calculate upon init.
-    cellSize = (screenWidth! - kTalentScreenTwoPadding) / NUM_COLS;
+    cellSize = (screenWidth! - kTalentScreenTwoPadding) / maxColumns;
   }
 }

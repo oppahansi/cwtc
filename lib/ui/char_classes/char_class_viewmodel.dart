@@ -11,19 +11,19 @@ class CharClassViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
   final _tcService = locator<TCService>();
 
-  String get getRngBgImageFilePath => _imageService.getRngBgImageFilePath;
+  void navigateToTalentTreeView() => locator<NavigationService>().navigateTo(Routes.talentTreeView);
+
+  void initTalentCalculator() => _tcService.initTalentCalculator();
+
+  void setCharClassId(int charClassId) => _tcService.setCharClassId(charClassId);
+
+  String get getRngBgImageFilePath => _imageService.getRngBgImage;
 
   int get getExpansionId => _tcService.getExpansionId;
 
   String get getExpansionFull => _tcService.getExpansionFull;
 
-  int get getCharClassCount => _tcService.getCharClassCount;
-
   Color get getExpansionColor => _tcService.getExpansionColor;
 
-  String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
-
-  void navigateToTalentTreeView() => locator<NavigationService>().navigateTo(Routes.talentTreeView);
-
-  void initTalentCalculator() => _tcService.initTalentCalculator();
+  String getCharClassIcon(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
 }
