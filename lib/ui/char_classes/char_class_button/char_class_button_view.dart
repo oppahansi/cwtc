@@ -20,7 +20,6 @@ class CharClassesButtonView extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: TextButton(
             onPressed: () {
-              model.setCharClassId(charClassId);
               model.initTalentCalculator();
               model.navigateToTalentTreeView();
             },

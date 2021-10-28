@@ -10,18 +10,15 @@ import 'talent/talent_view.dart';
 
 class TalentTreeViewModel extends BaseViewModel {
   final _imageService = locator<ImageService>();
-  final List<Talent> _talents = List.empty(growable: true);
   final _tcService = locator<TCService>();
 
-  int get getRowsCount => _tcService.getMaxTalentTreeRows;
+  int _talentIndex = 0;
 
   get getMaxTalentTreeRows => _tcService.getMaxTalentTreeRows;
 
   String getSpecIcon(int specId) => _imageService.getSpecIcon(_tcService.getSpecIcon(specId));
 
   String getIcon(String icon) => _imageService.getTalentIcon(icon);
-
-  void addTalent(Talent talent) => _talents.add(talent);
 
   // TODO correct implementation needed
   bool isTalentDisabled(int talentId) {
@@ -38,20 +35,18 @@ class TalentTreeViewModel extends BaseViewModel {
 
   int get getTalentIndex => 0;
 
-  String get getEmptyTalentIcon => _imageService.getEmptyTalentIcon;
-
-  bool showTalentOnTalentTreePosition(int index) => _tcService.showTalentOnIndex(index);
-
-  Talent getCurrentTalent(int talentIndex) => _tcService.getTalentForIndex(talentIndex);
+  bool showTalentOnIndex(int index) => _tcService.showTalentOnIndex(index);
 
   bool talentEnablesAnother(int talentId) => _tcService.talentEnablesAnother(talentId);
 
-  Widget getTalentForTreePosition(int talentTreePosition, double length) {
-    if (!showTalentOnTalentTreePosition(talentTreePosition)) return SizedBox(height: length, width: length);
+  Widget getTalentForIndex(int index, double length) {
+    if (!showTalentOnIndex(index)) {
+      return SizedBox(height: length, width: length);
+    }
 
-    Talent talent = _tcService.getTalent();
+    Talent talent = _tcService.getTalentFor(_talentIndex++);
 
-    return TalentView(talentTreePosition: talentTreePosition, talent: talent);
+    return TalentView(talentTreePosition: index, talent: talent);
   }
 
   int getTalentPoints(int talentTreePosition) => _tcService.getTalentPoints(talentTreePosition);

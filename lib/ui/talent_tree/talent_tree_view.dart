@@ -8,6 +8,26 @@ import 'talent_tree_viewmodel.dart';
 class TalentTreeView extends StatelessWidget {
   const TalentTreeView({Key? key}) : super(key: key);
 
+  Widget _buildTab(double imageWidth, double imageHeight, String imagePath) {
+    return Tab(
+      child: Container(
+        height: imageWidth,
+        width: imageHeight,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(imagePath),
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(imageWidth)),
+          border: Border.all(
+            width: 3,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -33,57 +53,9 @@ class TalentTreeView extends StatelessWidget {
                       indicatorColor: Colors.black,
                       indicatorPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                       tabs: [
-                        Tab(
-                          child: Container(
-                            height: talentImageWidth / 2,
-                            width: talentImageWidth / 2,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(model.getSpecIcon(0)),
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
-                              border: Border.all(
-                                width: 3,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            height: talentImageWidth / 2,
-                            width: talentImageWidth / 2,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(model.getSpecIcon(1)),
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
-                              border: Border.all(
-                                width: 3,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            height: talentImageWidth / 2,
-                            width: talentImageWidth / 2,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(model.getSpecIcon(2)),
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(talentImageWidth / 2)),
-                              border: Border.all(
-                                width: 3,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        )
+                        _buildTab(talentImageWidth / 2, talentImageWidth / 2, model.getSpecIcon(0)),
+                        _buildTab(talentImageWidth / 2, talentImageWidth / 2, model.getSpecIcon(1)),
+                        _buildTab(talentImageWidth / 2, talentImageWidth / 2, model.getSpecIcon(2)),
                       ],
                     ),
                   ),

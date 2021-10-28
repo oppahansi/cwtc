@@ -95,6 +95,32 @@ class DBService {
     return talents;
   }
 
+  Future<List<Talent>> getTalentsByExpansionAndClass(String expansion, int charClass) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("talents", where: "classId = ?", whereArgs: [charClass], orderBy: "rowid");
+    List<Talent> talents = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Talent talent = Talent.fromMap(rsultRow);
+      talents.add(talent);
+    }
+
+    return talents;
+  }
+
+  Future<List<Talent>> getTalentsByExpansionAndClassAndSpec(String expansion, int charClassId, int specId) async {
+    var db = await getDb(expansion);
+    var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId], orderBy: "rowid");
+    List<Talent> talents = List.empty(growable: true);
+
+    for (var rsultRow in dbResult) {
+      Talent talent = Talent.fromMap(rsultRow);
+      talents.add(talent);
+    }
+
+    return talents;
+  }
+
   Future<List<Talent>> getTalents(String expansion, int charClassId, int specId) async {
     var db = await getDb(expansion);
     var dbResult = await db!.query("talents", where: "classId = ? AND specId = ?", whereArgs: [charClassId, specId], orderBy: "rowid");

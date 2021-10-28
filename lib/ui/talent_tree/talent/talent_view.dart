@@ -1,7 +1,5 @@
-import 'package:align_positioned/align_positioned.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:wow_talent_calculator/wow_talent_calculator.dart';
 
 import '../../../app/size_config.dart';
 import '../../../data_models/talent.dart';
@@ -18,7 +16,6 @@ class TalentView extends StatelessWidget {
     SizeConfig().init(context);
     return ViewModelBuilder<TalentTreeViewModel>.reactive(
       builder: (context, model, child) {
-        model.addTalent(talent);
         return Positioned(
           top: talent.row * SizeConfig.cellSize!,
           left: talent.column * SizeConfig.cellSize!,

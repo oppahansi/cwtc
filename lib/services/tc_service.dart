@@ -11,17 +11,14 @@ import '../data_models/talent.dart';
 class TCService {
   int _charClassId = 0;
   int _expansionId = 0;
-  int _specId = 0;
 
   Map<int, List<CharClass>> _charClassesMap = {};
   Map<int, List<Spec>> _specsMap = {};
-  Map<int, List<Talent>> _talentsMap = {};
+  Map<int, Map<int, Map<int, List<Talent>>>> _talentsMap = {};
   Map<int, List<Rank>> _ranksMap = {};
   Map<int, List<Dependency>> _dependenciesMap = {};
-  Map<int, List<Talent>> _charClassTalents = {};
 
   WowTalentCalculator _wtc = WowTalentCalculator();
-  int _talentIndex = 0;
 
   int get getCharClassCount => _charClassesMap[_expansionId]!.length;
 
@@ -31,7 +28,7 @@ class TCService {
 
   String getSpecIcon(specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).icon;
 
-  Talent getTalent() => _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[_talentIndex++];
+  Talent getTalentFor(int index) => _talentsMap[_expansionId]![_charClassId]![_wtc.getSpecId]![index];
 
   String get getClassColor => _charClassesMap[_expansionId]![_charClassId].color;
 
@@ -51,17 +48,9 @@ class TCService {
 
   String get getCharClassName => _charClassesMap[_expansionId]![_charClassId].name;
 
-  void setSpecId(int specId) {
-    _specId = specId;
-    _talentIndex = 0;
-  }
+  void setSpecId(int specId) => _wtc.setSpecId(specId);
 
-  int get getSpecId => _specId;
-
-  Spec get getSpec => _specsMap[_expansionId]!.firstWhere((element) => element.id == _specId);
-
-  Talent getTalentForIndex(int talentIndex) =>
-      _talentsMap[_expansionId]!.where((element) => element.classId == _charClassId && element.specId == _specId).toList()[talentIndex];
+  int get getSpecId => _wtc.getSpecId;
 
   bool showTalentOnIndex(int index) => !_wtc.isPositionEmptyAt(index);
 
@@ -69,7 +58,7 @@ class TCService {
 
   void setSpecsMap(Map<int, List<Spec>> specsMap) => _specsMap = specsMap;
 
-  void setTalentsMap(Map<int, List<Talent>> talentsMap) => _talentsMap = talentsMap;
+  void setTalentsMap(Map<int, Map<int, Map<int, List<Talent>>>> talentsMap) => _talentsMap = talentsMap;
 
   void setRanksMap(Map<int, List<Rank>> ranksMap) => _ranksMap = ranksMap;
 
@@ -79,21 +68,19 @@ class TCService {
 
   void setCharClassId(int charClassId) {
     _charClassId = charClassId;
-    _specId = 0;
-
     resetTalentTreeState();
   }
 
   void mapData() {
-    for (var expansion in _charClassesMap.keys) {
+    for (var expansion in Expansions.values) {
       for (var charClass in _charClassesMap[_expansionId]!) {
-        List<Spec> specs = _specsMap[expansion]!.where((element) => element.classId == charClass.id).toList();
+        List<Spec> specs = _specsMap[expansion.index]!.where((element) => element.classId == charClass.id).toList();
 
         for (var spec in specs) {
-          List<Talent> talents = _talentsMap[expansion]!.where((element) => element.specId == spec.id && element.classId == charClass.id).toList();
+          List<Talent> talents = _talentsMap[expansion.index]![charClass.id]![spec.id]!;
 
           for (var talent in talents) {
-            List<Rank> ranks = _ranksMap[expansion]!.where((element) => element.talentId == talent.id).toList();
+            List<Rank> ranks = _ranksMap[expansion.index]!.where((element) => element.talentId == talent.id).toList();
             talent.ranks = ranks;
           }
 
@@ -119,7 +106,7 @@ class TCService {
   }
 
   void resetSpecState({int specId = -1}) {
-    _wtc.resetSpec(specId: specId < 0 ? _specId : specId);
+    _wtc.resetSpec(specId: specId < 0 ? _wtc.getSpecId : specId);
   }
 
   String getSpecName(int specId) => _specsMap[_expansionId]!.firstWhere((element) => element.classId == _charClassId && element.id == specId).name;

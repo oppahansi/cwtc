@@ -34,28 +34,41 @@ class StartUpViewModel extends FutureViewModel {
   Future init() async {
     Map<int, List<CharClass>> charClassesMap = {};
     Map<int, List<Spec>> specsMap = {};
-    Map<int, List<Talent>> talentsMap = {};
     Map<int, List<Rank>> ranksMap = {};
     Map<int, List<Dependency>> dependenciesMap = {};
+    Map<int, Map<int, Map<int, List<Talent>>>> talentsByExpansionMap = {};
 
     for (var expansion in Expansions.values) {
       var expansionString = expansion.toShortString();
       List<CharClass> charClasses = await _dbService.getCharClasses(expansionString);
       List<Spec> specs = await _dbService.getSpecsByExpansion(expansionString);
-      List<Talent> talents = await _dbService.getTalentsByExpansion(expansionString);
       List<Rank> ranks = await _dbService.getRanksByExpansion(expansionString);
       List<Dependency> dependencies = await _dbService.getDependenciesByExpansion(expansionString);
 
       charClassesMap.putIfAbsent(expansion.index, () => charClasses);
       specsMap.putIfAbsent(expansion.index, () => specs);
-      talentsMap.putIfAbsent(expansion.index, () => talents);
       ranksMap.putIfAbsent(expansion.index, () => ranks);
       dependenciesMap.putIfAbsent(expansion.index, () => dependencies);
+
+      Map<int, Map<int, List<Talent>>> talentsByClassMap = {};
+
+      for (int i = 0; i < CharClasses.values.length; i++) {
+        Map<int, List<Talent>> talentsBySpecMap = {};
+
+        for (var specId in TalentCalculatorConstants.expansionAndSpecIds) {
+          List<Talent> talents = await _dbService.getTalentsByExpansionAndClassAndSpec(expansionString, i, specId);
+          talentsBySpecMap.putIfAbsent(specId, () => talents);
+        }
+
+        talentsByClassMap.putIfAbsent(i, () => talentsBySpecMap);
+      }
+
+      talentsByExpansionMap.putIfAbsent(expansion.index, () => talentsByClassMap);
     }
 
     _tcService.setCharClassesMap(charClassesMap);
     _tcService.setSpecsMap(specsMap);
-    _tcService.setTalentsMap(talentsMap);
+    _tcService.setTalentsMap(talentsByExpansionMap);
     _tcService.setRanksMap(ranksMap);
     _tcService.setDependenciesMap(dependenciesMap);
 

@@ -35,7 +35,7 @@ class TalentSpecView extends StatelessWidget {
                   child: Stack(
                     children: [
                       ...List.generate(model.getTreeLength, (index) {
-                        return model.getTalentForTreePosition(index, talentImageWidth);
+                        return model.getTalentForIndex(index, talentImageWidth);
                       })
                     ],
                   ),

@@ -23,8 +23,6 @@ class CharClassViewModel extends BaseViewModel {
 
   String getCharClassIconForId(int charClassId) => _imageService.getCharClassIcon(_tcService.getCharClassIcon(charClassId));
 
-  void setCharClassId(int charClassId) => _tcService.setCharClassId(charClassId);
-
   void navigateToTalentTreeView() => locator<NavigationService>().navigateTo(Routes.talentTreeView);
 
   void initTalentCalculator() => _tcService.initTalentCalculator();
