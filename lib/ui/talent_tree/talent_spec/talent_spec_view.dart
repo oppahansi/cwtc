@@ -44,16 +44,6 @@ class TalentSpecView extends StatelessWidget {
             );
           },
         );
-        // return Container(
-        //   decoration: Constants.getBgDecoration(model.getBGImage),
-        //   child: Stack(
-        //     children: [
-        //       ...List.generate(model.getTreeLength, (index) {
-        //         return model.getTalentForTreePosition(index, talentImageWidth);
-        //       })
-        //     ],
-        //   ),
-        // );
       },
       viewModelBuilder: () => TalentTreeViewModel(),
     );
